@@ -17,7 +17,7 @@ public class CoursesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // Fetch course data using the selectQuery method
-        LinkedList<String[]> coursesData = DBConnector.getConnector().selectQuery("showAllCourses", "gritacademy", "localhost", "3308", "User3", "user");
+        LinkedList<String[]> coursesData = DBConnector.getConnector().selectQuery("showAllCourses");
 
         // Set the course data as a request attribute
         req.setAttribute("coursesData", coursesData);
