@@ -14,10 +14,14 @@ public class UserBean implements Serializable {
     private STATE_TYPE stateType = STATE_TYPE.anonymous;
 
     public UserBean(){}
-    public UserBean(String id, USER_TYPE userType, PRIVILEGE_TYPE privilegeType, STATE_TYPE stateType){
+    public UserBean(String id, USER_TYPE userType, String privilegeType, STATE_TYPE stateType){
         this.id=id;
         this.userType=userType;
-        this.privilegeType=privilegeType;
+        if(privilegeType.equals("admin")){
+            this.privilegeType = PRIVILEGE_TYPE.admin;
+        } else if(privilegeType.equals("superadmin")){
+            this.privilegeType = PRIVILEGE_TYPE.superadmin;
+        }
         this.stateType=stateType;
     }
 

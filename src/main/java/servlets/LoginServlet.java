@@ -34,12 +34,13 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String userType = req.getParameter("user_type");
         boolean success = false;
+        String[] user;
         //comparing data with DB student or teacher
         if (userType.equals("student")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("studentLogin", username, password);
             if (data.size() > 1) {
                 req.getSession().setMaxInactiveInterval(600);
-                UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, PRIVILEGE_TYPE.user,STATE_TYPE.confirmed);
+                UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, "user",STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);
                 success = true;
 
@@ -48,8 +49,8 @@ public class LoginServlet extends HttpServlet {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
             if (data.size() > 1) {
                 req.getSession().setMaxInactiveInterval(600);
-                System.out.println(Arrays.toString(data.get(1)));
-                UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.teacher, PRIVILEGE_TYPE.user,STATE_TYPE.confirmed);
+                user = data.get(1);
+                UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.teacher, user[user.length-1],STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);
                 success = true;
             }
@@ -59,7 +60,6 @@ public class LoginServlet extends HttpServlet {
         }
 
         if(success){
-
             getServletContext().setAttribute("userState", "confirmed");
             getServletContext().setInitParameter("initState","confirmed");
             req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
