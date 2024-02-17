@@ -1,4 +1,4 @@
 package servlets;
 
-public class MyPage {
+public class MyPageServlet {
 }
