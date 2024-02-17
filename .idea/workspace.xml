@@ -4,24 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/PRIVILAGE_TYPE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/fragments/navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="added header,footer,index.jsp,plugin,depenpency,enum,DBConnector, homepage basic code and homepage design.">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/fragments/loginnavbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/PRIVILEGE_TYPE.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/STATE_TYPE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/STATE_TYPE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/USER_TYPE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/USER_TYPE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/UserBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/IndexServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/IndexServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/CSS/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/CSS/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/loginForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/indexnavbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,20 +38,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.finalproject [install].executor": "Run",
-    "Maven.finalproject [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/MashrekasMac/Desktop/Java/Java23-WebDevJava-GritAcademyPortal-Mashreka-Rositsa",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.finalproject [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.finalproject [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/MashrekasMac/Desktop/Java/Java23-WebDevJava-GritAcademyPortal-Mashreka-Rositsa&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -78,6 +69,19 @@
       <updated>1707987536007</updated>
       <workItem from="1707987537092" duration="5000" />
     </task>
+    <task id="LOCAL-00001" summary="added header,footer,index.jsp,plugin,depenpency,enum,DBConnector, homepage basic code and homepage design.">
+      <option name="closed" value="true" />
+      <created>1708145911012</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708145911012</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added header,footer,index.jsp,plugin,depenpency,enum,DBConnector, homepage basic code and homepage design." />
+    <option name="LAST_COMMIT_MESSAGE" value="added header,footer,index.jsp,plugin,depenpency,enum,DBConnector, homepage basic code and homepage design." />
   </component>
 </project>

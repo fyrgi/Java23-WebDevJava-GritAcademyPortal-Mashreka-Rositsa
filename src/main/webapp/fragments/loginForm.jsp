@@ -1,16 +1,21 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rosit
-  Date: 2024-02-16
-  Time: 13:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<form id="loginForm" class="form-container" action="/login" method="post">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" class="form-input" name="username" required value="bob">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" class="form-input" name="password" required value="zob">
+    </div>
+
+    <div class="form-group">
+        <label for="user_type">Choose a user type:</label>
+        <select id="user_type" class="form-select" name="user_type">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
