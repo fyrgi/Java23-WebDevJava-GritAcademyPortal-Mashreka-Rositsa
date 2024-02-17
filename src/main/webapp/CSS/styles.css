@@ -29,12 +29,25 @@ body {
     color: #333;
 }
 
-h1 {
-    color: #007bff;
-    text-align: center;
+.sub-navbar {
+    background-color: #6c757d;
+    overflow: hidden;
 }
 
-h2 {
+.sub-navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.sub-navbar a:hover {
+    background-color: #495057;
+}
+
+h1, h2 {
     color: #007bff;
     text-align: center;
 }

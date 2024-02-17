@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                 req.getSession().setMaxInactiveInterval(0);
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, PRIVILAGE_TYPE.user,STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);
-                req.getRequestDispatcher("/userPage").forward(req,resp);
+                req.getRequestDispatcher("/myPage").forward(req,resp);
             }else{//if login not found goes back to login form and sows a message
                 req.getSession().setAttribute("errorMessage","Student not found");
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);

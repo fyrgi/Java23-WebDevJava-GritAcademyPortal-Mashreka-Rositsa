@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="added header,footer,index.jsp,plugin,depenpency,enum,DBConnector, homepage basic code and homepage design." />
+    <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="added header,footer,index.jsp,plugin,depenpency,enum,DBConnector, homepage basic code and homepage design.">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/fragments/mypagenavbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/CSS/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/CSS/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navAdminTeacher.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/navAdminTeacher.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navStudent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/navStudent.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navUserTeacher.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/navUserTeacher.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

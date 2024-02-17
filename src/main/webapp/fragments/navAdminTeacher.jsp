@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rosit
-  Date: 2024-02-16
-  Time: 13:58
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<!-- Navigation Menu for user Admin -->
+<nav class="sub-navbar">
+    <a href="/allCourses" >All Courses</a>
+    <a href="/addNewCourses" >Add new courses</a>
+    <a href="/allStudents">All Students</a>
+    <a href="/specificStudentsInCourses">All courses for a specific student</a>
+    <a href="/studentsTeachersInCourses">All students and teachers for a specific course</a>
+    <a href="/registerTeachers ">Register teachers </a>
+    <a href="/registerStudents">Register students</a>
+    <a href="/associationTeachersCourses">Associations between teachers and courses</a>
+    <a href="/associationStudentsCourses">Associations between students and courses</a>
+    <a href="/addAdmin">Add Admin</a>
+</nav>

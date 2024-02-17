@@ -1,16 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rosit
-  Date: 2024-02-16
-  Time: 13:58
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<!-- Navigation Menu for Super Admin -->
+<nav class="sub-navbar">
+    <a href="/adminToTeacher" >Admin to user teacher</a>
+    <a href="/statistics">Statistics</a>
+</nav>
