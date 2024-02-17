@@ -1,4 +1,4 @@
-package servlets;
+package oldservlets;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.annotation.WebServlet;
