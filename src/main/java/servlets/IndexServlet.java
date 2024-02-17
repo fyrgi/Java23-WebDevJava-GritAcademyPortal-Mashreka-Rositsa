@@ -1,5 +1,7 @@
 package servlets;
 
+import models.UserBean;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +15,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //System.out.println();
-
+        UserBean userBean = new UserBean();
         req.getRequestDispatcher("/index.jsp").forward(req,resp);
     }
 
