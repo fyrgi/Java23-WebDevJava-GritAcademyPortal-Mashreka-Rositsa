@@ -1,6 +1,6 @@
 package models;
 
-public enum PRIVILAGE_TYPE {
+public enum PRIVILEGE_TYPE {
     user,
     admin,
     superadmin

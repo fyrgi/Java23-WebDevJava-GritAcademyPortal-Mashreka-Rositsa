@@ -8,13 +8,13 @@ import java.sql.*;
 import java.util.LinkedList;
 
 /**
- * Db Connector Singleton. Uses queries defined in queries.csv
+ * Db Connector Singleton. Uses queries defined in rqueries.csv
  * Access object with MySQLConnector.getConnector();
  * Use one of <operation>Query methods.
  */
 public class DBConnector {
 
-    final private String queriesPath = "src/main/java/models/queries.csv";
+    final private String queriesPath = "src/main/java/models/rqueries.csv";
     private static DBConnector connector = null;
 
     private DBConnector(){};

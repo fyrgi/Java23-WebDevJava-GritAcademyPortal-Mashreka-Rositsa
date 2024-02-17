@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="added nav for student,teacher,admin,superadmin">
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/rqueries.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/ContextGrabber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/ContextGrabber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/ContextMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/ContextMaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/SessionGrabber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/SessionGrabber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/SessionMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/SessionMaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/WebAppInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/WebAppInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/courses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/courses.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navbar.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/PRIVILAGE_TYPE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/PRIVILEGE_TYPE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/UserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/queries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/mqueries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/loginForm.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

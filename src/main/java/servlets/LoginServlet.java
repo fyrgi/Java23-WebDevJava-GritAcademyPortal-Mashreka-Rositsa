@@ -28,15 +28,17 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String userType = req.getParameter("user_type");
-
+        System.out.println(username);
+        System.out.println(password);
 
         //comparing data with DB student or teacher
         if (userType.equals("student")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("studentLogin", username, password);
             //data object always returns row with column names
+            System.out.println(data.size());
             if (data.size() > 1) {
                 req.getSession().setMaxInactiveInterval(0);
-                UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, PRIVILAGE_TYPE.user,STATE_TYPE.confirmed);
+                UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, PRIVILEGE_TYPE.user,STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);
                 req.getRequestDispatcher("/myPage").forward(req,resp);
             }else{//if login not found goes back to login form and sows a message

@@ -10,11 +10,11 @@ public class UserBean implements Serializable {
     //shoudl be set to the same is it is in the DB
     private String id;
     private USER_TYPE userType;
-    private PRIVILAGE_TYPE privilageType = PRIVILAGE_TYPE.user;
+    private PRIVILEGE_TYPE privilageType = PRIVILEGE_TYPE.user;
     private STATE_TYPE stateType = STATE_TYPE.anonymous;
 
     public UserBean(){}
-    public UserBean(String id, USER_TYPE userType, PRIVILAGE_TYPE privilageType, STATE_TYPE stateType){
+    public UserBean(String id, USER_TYPE userType, PRIVILEGE_TYPE privilageType, STATE_TYPE stateType){
         this.id=id;
         this.userType=userType;
         this.privilageType=privilageType;
@@ -31,7 +31,7 @@ public class UserBean implements Serializable {
         this.stateType = stateType;
     }
 
-    public void setprivilageType(PRIVILAGE_TYPE privilageType) {
+    public void setprivilageType(PRIVILEGE_TYPE privilageType) {
         this.privilageType = privilageType;
     }
 
@@ -39,7 +39,7 @@ public class UserBean implements Serializable {
         this.userType = userType;
     }
 
-    public PRIVILAGE_TYPE getprivilageType() {
+    public PRIVILEGE_TYPE getprivilageType() {
         return privilageType;
     }
 

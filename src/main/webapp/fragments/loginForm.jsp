@@ -1,12 +1,12 @@
 <form id="loginForm" class="form-container" action="/login" method="post">
     <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" class="form-input" name="username" required value="bob">
+        <input type="text" id="username" class="form-input" name="username" required>
     </div>
 
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" class="form-input" name="password" required value="zob">
+        <input type="password" id="password" class="form-input" name="password" required>
     </div>
 
     <div class="form-group">
