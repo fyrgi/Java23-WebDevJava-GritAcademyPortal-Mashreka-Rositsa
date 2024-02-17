@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="added nav for student,teacher,admin,superadmin">
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/rqueries.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/PRIVILAGE_TYPE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/PRIVILEGE_TYPE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/UserBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/queries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/mqueries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/rqueries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/rqueries.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/loginForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navAdminTeacher.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/teacher/navAdminTeacher.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navStudent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/student/navStudent.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navSuperadmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/teacher/navSuperadmin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navUserTeacher.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/teacher/navUserTeacher.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +55,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GritAcademy\web\finalproject\src\main\webapp\fragments\teacher" />
+      <recent name="D:\GritAcademy\web\finalproject\src\main\webapp\fragments\student" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

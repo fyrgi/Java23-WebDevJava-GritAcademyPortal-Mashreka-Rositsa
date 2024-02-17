@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,32 +29,38 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String userType = req.getParameter("user_type");
-        System.out.println(username);
-        System.out.println(password);
 
         //comparing data with DB student or teacher
         if (userType.equals("student")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("studentLogin", username, password);
-            //data object always returns row with column names
-            System.out.println(data.size());
             if (data.size() > 1) {
                 req.getSession().setMaxInactiveInterval(0);
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, PRIVILEGE_TYPE.user,STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);
-                req.getRequestDispatcher("/myPage").forward(req,resp);
+                req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
             }else{//if login not found goes back to login form and sows a message
                 req.getSession().setAttribute("errorMessage","Student not found");
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);
             }
         }else if (userType.equals("teacher")) {
-            List data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
-            //data object always returns row with column names
-            if (data.size() > 1) {
-                resp.getWriter().print("LOGGED IN - ");
-                //TODO similar to the student code
-            }else{
-                req.getRequestDispatcher("/login.jsp").forward(req,resp);
-            }
+                LinkedList<String[]> data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
+                if (data.size() > 1) {
+                    req.getSession().setMaxInactiveInterval(0);
+                    System.out.println(Arrays.toString(data.get(1)));
+                    UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.teacher, PRIVILEGE_TYPE.user,STATE_TYPE.confirmed);
+                    req.getSession().setAttribute("userBean", userBean);
+                    req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
+                }else{//if login not found goes back to login form and sows a message
+                    req.getSession().setAttribute("errorMessage","Student not found");
+                    req.getRequestDispatcher("/login.jsp").forward(req, resp);
+                }
+            }else if (userType.equals("teacher")) {
+                List data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
+                //data object always returns row with column names
+                if (data.size() > 1) {
+                    resp.getWriter().print("LOGGED IN - ");
+                    //TODO similar to the student code
+            } else {req.getRequestDispatcher("/login.jsp").forward(req,resp);}
         }
     }
 }
