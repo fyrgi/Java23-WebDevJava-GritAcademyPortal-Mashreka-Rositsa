@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="2fb7e268-3c5d-4bda-908c-991f089aece8" name="Changes" comment="added nav for student,teacher,admin,superadmin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/ContextGrabber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/ContextGrabber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/ContextMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/ContextMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/SessionGrabber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/SessionGrabber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/SessionMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/SessionMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oldservlets/WebAppInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oldservlets/WebAppInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/MyPageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/courses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/courses.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/fragments/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/fragments/navbar.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,20 +45,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.finalproject [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.finalproject [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/MashrekasMac/Desktop/Java/Java23-WebDevJava-GritAcademyPortal-Mashreka-Rositsa&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.finalproject [install].executor": "Run",
+    "Maven.finalproject [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/MashrekasMac/Desktop/Java/Java23-WebDevJava-GritAcademyPortal-Mashreka-Rositsa",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
