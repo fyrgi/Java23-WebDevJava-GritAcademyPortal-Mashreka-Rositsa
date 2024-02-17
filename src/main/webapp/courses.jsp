@@ -14,17 +14,18 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${coursesData}" var="course">
-                    <tr>
-                        <td>${course[0]}</td> <!--  id -->
-                        <td>${course[1]}</td> <!-- course name -->
-                        <td>${course[2]}</td> <!-- points -->
-                        <td>${course[3]}</td> <!-- description -->
-                    </tr>
+                <c:forEach items="${coursesData}" var="course" varStatus="status">
+                    <c:if test="${status.index != 0}"> <!-- Skip header row -->
+                        <tr>
+                            <td>${course[0]}</td> <!--  id -->
+                            <td>${course[1]}</td> <!-- course name -->
+                            <td>${course[2]}</td> <!-- points -->
+                            <td>${course[3]}</td> <!-- description -->
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </tbody>
         </table>
     </div>
-
 
 <%@ include file="fragments/footer.jsp" %>
