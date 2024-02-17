@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="fragments/header.jsp" %>
-
+<!-- here we have to ensure that state and userType hold expected values in order to show the user the expected navbar-->
 <c:choose>
     <c:when test="${userBean.userType == 'student' && userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/student/navStudent.jsp" %>
