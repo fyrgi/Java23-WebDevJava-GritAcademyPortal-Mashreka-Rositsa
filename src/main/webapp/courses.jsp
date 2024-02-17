@@ -2,13 +2,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="fragments/header.jsp" %>
-<main>
-  <h1>Welcome to Grit Academy</h1>
-  <section id="about">
-    <h2>About Us</h2>
-    <p>Grit Academy is dedicated to providing high-quality education and fostering a culture of excellence and innovation. Our mission is to empower students with the knowledge and skills they need to succeed in their academic and professional endeavors.</p>
-  </section>
-</main>
+<div class="container">
+        <h2>Course List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Points</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${coursesData}" var="course">
+                    <tr>
+                        <td>${course[0]}</td> <!--  id -->
+                        <td>${course[1]}</td> <!-- course name -->
+                        <td>${course[2]}</td> <!-- points -->
+                        <td>${course[3]}</td> <!-- description -->
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
 
 <%@ include file="fragments/footer.jsp" %>
