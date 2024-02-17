@@ -35,20 +35,18 @@ public class LoginServlet extends HttpServlet {
         String userType = req.getParameter("user_type");
         boolean success = false;
         String[] user;
-        //comparing data with DB student or teacher
         if (userType.equals("student")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("studentLogin", username, password);
             if (data.size() > 1) {
-                req.getSession().setMaxInactiveInterval(600);
+                req.getSession().setMaxInactiveInterval(120);
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, "user",STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);
                 success = true;
-
             }
         } else if (userType.equals("teacher")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
             if (data.size() > 1) {
-                req.getSession().setMaxInactiveInterval(600);
+                req.getSession().setMaxInactiveInterval(120);
                 user = data.get(1);
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.teacher, user[user.length-1],STATE_TYPE.confirmed);
                 req.getSession().setAttribute("userBean", userBean);

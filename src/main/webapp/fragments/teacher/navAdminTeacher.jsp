@@ -10,4 +10,5 @@
     <a href="/associationTeachersCourses">Associations between teachers and courses</a>
     <a href="/associationStudentsCourses">Associations between students and courses</a>
     <a href="/addAdmin">Add Admin</a>
+    <a href="/loggedout" >Logout</a>
 </nav>
