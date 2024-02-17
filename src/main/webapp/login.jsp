@@ -3,12 +3,9 @@
 
 <%@ include file="fragments/header.jsp" %>
 
-
-
 <main>
-<%@ include file="fragments/loginForm.jsp" %>
+    <%@ include file="fragments/loginForm.jsp" %>
 
 </main>
-
 
 <%@ include file="fragments/footer.jsp" %>

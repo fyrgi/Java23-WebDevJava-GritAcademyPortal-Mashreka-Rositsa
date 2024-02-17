@@ -9,5 +9,6 @@ showAvailableCourses; SELECT * FROM courses AS c WHERE c.id NOT IN (SELECT id_co
 registerStudentInCourse;INSERT INTO student_course (id_student , id_course) VALUES (?,?);gritacademy;localhost;13306;insertUser;user
 showSelectedStudent;SELECT id, CONCAT(f_name,' ',l_name) AS student_name FROM students WHERE id={0};gritacademy;localhost;13306;user;user
 studentLogin;SELECT * FROM students WHERE username='{0}' AND password='{1}';gritacademy;localhost;13306;user;user
+teacherLogin;SELECT * FROM teachers WHERE username='{0}' AND password='{1}';gritacademy;localhost;13306;user;user
 
 

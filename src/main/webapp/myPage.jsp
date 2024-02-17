@@ -3,9 +3,23 @@
 
 <%@ include file="fragments/header.jsp" %>
 
-<c:if test="${userBean.userType == 'student'}">
-    <%@ include file="fragments/navStudent.jsp" %>
-</c:if>
-
+<c:choose>
+    <c:when test="${userBean.userType == 'student' && userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/student/navStudent.jsp" %>
+        <p>Other include for student</p>
+    </c:when>
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'user'&& userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
+        <p>Other include for teacher user</p>
+    </c:when>
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'admin'&& userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/teacher/navAdminTeacher.jsp" %>
+        <p>Other include for teacher admin</p>
+    </c:when>
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'superadmin'&& userBean.stateType == 'confirmed'}">
+        <%@ include file="fragments/teacher/navSuperadmin.jsp" %>
+        <p>Other include for teacher super admin</p>
+    </c:when>
+</c:choose>
 
 <%@ include file="fragments/footer.jsp" %>

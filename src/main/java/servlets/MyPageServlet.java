@@ -1,5 +1,6 @@
 package servlets;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +10,12 @@ import java.io.IOException;
 @WebServlet(("/mypage"))
 public class MyPageServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        getServletContext().setAttribute("WelcomeGet", "Hello from servlet contextMaker GET");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        getServletContext().setAttribute("WelcomePost", "Hello from servlet contextMaker POST");
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
     }
 }
