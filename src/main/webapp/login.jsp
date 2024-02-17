@@ -4,7 +4,7 @@
 <html>
 <%@ include file="fragments/header.jsp" %>
 <body>
-<%@ include file="fragments/loginnavbar.jsp" %>
+<%@ include file="fragments/navbar.jsp" %>
 
 <main>
 <%@ include file="fragments/loginForm.jsp" %>

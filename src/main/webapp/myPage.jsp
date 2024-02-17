@@ -4,7 +4,7 @@
 <html>
 <%@ include file="fragments/header.jsp" %>
 <body>
-<%@ include file="fragments/mypagenavbar.jsp" %>
+<%@ include file="fragments/navbar.jsp" %>
 
 
 <c:if test="${userBean.userType == 'student'}">
