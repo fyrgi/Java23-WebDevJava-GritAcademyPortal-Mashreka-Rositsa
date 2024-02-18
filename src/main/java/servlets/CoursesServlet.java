@@ -19,22 +19,24 @@ public class CoursesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserBean userBean = (UserBean) getServletContext().getAttribute("userBean");
         String state = (String) getServletContext().getAttribute("userState");
-        System.out.println(state);
         LinkedList<String[]> coursesData;
+        LinkedList<String> tableHeaders;
         if(state == "confirmed"){
             String lala = "lala";
             req.getSession().setAttribute("lala", lala);
             coursesData = DBConnector.getConnector().selectQuery("showAllCourses");
-            for(int i = 0; i < coursesData.size(); i++){
-                System.out.println(Arrays.toString(coursesData.get(i)));
-            }
-            req.setAttribute("coursesData", coursesData);
-            System.out.println("I am now here");
+            getServletContext().setAttribute("coursesData", coursesData);
+            tableHeaders = new LinkedList<>();
+            tableHeaders.add("ID");
+            tableHeaders.add("Course");
+            tableHeaders.add("Points");
+            tableHeaders.add("Description");
+            System.out.println(tableHeaders.get(3));
+            getServletContext().setAttribute("tableHeaders", tableHeaders);
             req.getRequestDispatcher("myPage.jsp").forward(req,resp);
         } else if(state == "anonymous"){
             // Fetch course data using the selectQuery method
             coursesData = DBConnector.getConnector().selectQuery("showAllCourses");
-            System.out.println("I am first here");
             // Set the course data as a request attribute
             req.setAttribute("coursesData", coursesData);
 
