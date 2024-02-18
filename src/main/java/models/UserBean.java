@@ -57,7 +57,7 @@ public class UserBean implements Serializable {
 
     @Override
     public String toString() {
-        return "userType: "+userType + " privilageType: " + privilegeType + " stateType: "  + stateType;
+        return "userType: "+userType + " privilegeType: " + privilegeType + " stateType: "  + stateType;
     }
 }
 

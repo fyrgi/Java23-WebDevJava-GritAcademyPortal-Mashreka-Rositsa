@@ -18,7 +18,7 @@ public class MyPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserBean userBean = (UserBean) getServletContext().getAttribute("userBean");
+        UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
         String state = (String) getServletContext().getAttribute("userState");
         System.out.println(state);
         LinkedList<String[]> studentCoursesData ;

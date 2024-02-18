@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         // in the state we will save value anonymous if the user is not logged in and
         // confirmed if they have successfully logged in
         String currState = (String) getServletContext().getAttribute("userState");
-        // we don't sue the Errror message now,
+        // we don't sue the Error message now,
         // but later it may be used to store information about unsuccessful attempt of login
         req.getSession().setAttribute("errorMessage","");
         // if the user is not logged in they will be able to see the login page which calls the login form
