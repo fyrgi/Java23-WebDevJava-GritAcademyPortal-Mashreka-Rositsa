@@ -11,6 +11,14 @@
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'user'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
         <p>Other include for teacher user</p>
+        <c:choose>
+            <c:when test="${lala == 'lala'}">
+                <%@ include file="user/all-courses.jsp" %>
+            </c:when>
+            <c:when test="${lala != 'lala'}">
+                <p>Other include for teacher user</p>
+            </c:when>
+        </c:choose>
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'admin'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navAdminTeacher.jsp" %>
