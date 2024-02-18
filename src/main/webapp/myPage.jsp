@@ -7,32 +7,14 @@
 <c:choose>
     <c:when test="${userBean.userType == 'student' && userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/student/navStudent.jsp" %>
-        <p>Other include for student</p>
-        <!-- Table for enrolled courses -->
-
-           <table class="table">
-                <thead>
-                    <tr>
-                        <th>Course ID</th>
-                        <th>Course Name</th>
-                        <th>Points</th>
-                        <th>Description</th>
-                        <th>Student Name</th>
-                        <th>Teacher Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="course" items="${studentCoursesData}">
-
-                        <tr>
-                            <td>${course.id}</td>
-                            <td>${course.name}</td>
-                            <td>${course.points}</td>
-                            <td>${course.description}</td>
-                            <td>${course.student_name}</td>
-                            <td>${course.teacher_name}</td>
-                        </tr>
-                    </c:forEach>
+        <c:choose>
+            <c:when test="${caller == 'studentCourses'}">
+                <%@ include file="fragments/tableView.jsp" %>
+            </c:when>
+            <c:when test="${caller != 'teacher'}">
+                <p>Other include for teacher user</p>
+            </c:when>
+        </c:choose>
                 </tbody>
             </table>
 

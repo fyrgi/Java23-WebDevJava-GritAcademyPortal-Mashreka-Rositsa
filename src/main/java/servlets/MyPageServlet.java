@@ -11,31 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 @WebServlet(("/mypage"))
 public class MyPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Inside doGet method of MyPageServlet");
         UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
         String state = (String) getServletContext().getAttribute("userState");
 
-        System.out.println("UserBean ID: " + userBean.getId());
-        System.out.println("User State: " + state);
-
         if (state != null && state.equals("confirmed") && userBean != null) {
-            String userType = userBean.getUserType().toString();
-
+            String userType = String.valueOf(userBean.getUserType());
+            LinkedList<String[]> databaseData;
+            LinkedList<String> tableHeaders;
             System.out.println("User Type: " + userType);
 
             switch (userType) {
                 case "student":
                     String userId = userBean.getId();
-                    System.out.println("Student ID: " + userId);
-                    LinkedList<String[]> studentCoursesData = DBConnector.getConnector().selectQuery("EnrolledCoursesOverview", userId);
-                    System.out.println("Student Courses Data: " + studentCoursesData);
-                    request.setAttribute("studentCoursesData", studentCoursesData);
+                    String student = "studentCourses";
+                    // set the context attribute to find next action in myPage
+                    request.getSession().setAttribute("caller", student);
+                    databaseData = DBConnector.getConnector().selectQuery("EnrolledCoursesOverview", userId);
+                    //System.out.println(Arrays.toString(Arrays.stream(databaseData.get(0)).toArray()));
+                    tableHeaders = buildTableHeaders("ID", "Course Name", "Points", "Description", "Student name", "Teacher name");
+                    getServletContext().setAttribute("coursesData", databaseData);
+                    getServletContext().setAttribute("tableHeaders", tableHeaders);
                     request.getRequestDispatcher("myPage.jsp").forward(request, response);
                     break;
                 case "teacher":
@@ -65,5 +67,11 @@ public class MyPageServlet extends HttpServlet {
 
 
         req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
+    }
+
+    protected LinkedList<String> buildTableHeaders(String...args){
+        LinkedList<String> tableHeaders = new LinkedList<>();
+        tableHeaders.addAll(Arrays.asList(args));
+        return tableHeaders;
     }
 }

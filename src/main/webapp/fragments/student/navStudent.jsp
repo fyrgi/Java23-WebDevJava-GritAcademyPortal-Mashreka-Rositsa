@@ -1,7 +1,7 @@
 <!-- Navigation Menu for students -->
 <nav class="sub-navbar">
-    <a href="/studentEnrolledCourses" >Courses</a>
-    <a href="/studentsInCourses">Students</a>
-    <a href="/teachersInCourses" value="logout">Teachers</a>
+    <a href="/mypage" >Courses</a>
+    <a href="/mypage">Students</a>
+    <a href="/mypage">Teachers</a>
     <a href="/loggedout" >Logout</a>
 </nav>

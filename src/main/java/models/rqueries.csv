@@ -11,4 +11,5 @@ showSelectedStudent;SELECT id, CONCAT(f_name,' ',l_name) AS student_name FROM st
 studentLogin;SELECT * FROM students WHERE username='{0}' AND password='{1}';gritacademy;localhost;13306;user;user
 teacherLogin;SELECT * FROM teachers WHERE username='{0}' AND password='{1}';gritacademy;localhost;13306;user;user
 showAllCourses;SELECT * FROM courses;gritacademy;localhost;13306;user;user
+EnrolledCoursesOverview;SELECT c.id, c.name, c.points, c.description, CONCAT(s.f_name, ' ', s.l_name) AS student_name, CONCAT(t.f_name, ' ', t.l_name) AS teacher_name FROM courses c JOIN student_course sc ON c.id = sc.id_course JOIN students s ON sc.id_student = s.id JOIN teacher_course tc ON c.id = tc.id_course JOIN teachers t ON tc.id_teacher = t.id WHERE s.id='{0}';gritacademy;localhost;13306;user;user
 
