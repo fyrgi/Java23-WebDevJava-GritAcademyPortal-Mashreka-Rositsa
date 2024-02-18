@@ -9,7 +9,8 @@
         <%@ include file="fragments/student/navStudent.jsp" %>
         <p>Other include for student</p>
         <!-- Table for enrolled courses -->
-            <table>
+
+           <table class="table">
                 <thead>
                     <tr>
                         <th>Course ID</th>
@@ -22,6 +23,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="course" items="${studentCoursesData}">
+
                         <tr>
                             <td>${course.id}</td>
                             <td>${course.name}</td>
@@ -33,6 +35,7 @@
                     </c:forEach>
                 </tbody>
             </table>
+
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'user'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
