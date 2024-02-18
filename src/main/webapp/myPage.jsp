@@ -9,6 +9,7 @@
         <%@ include file="fragments/student/navStudent.jsp" %>
         <c:choose>
             <c:when test="${caller == 'studentCourses'}">
+                <c:set var="viewTitle" value="All Courses" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller != 'teacher'}">
@@ -24,6 +25,7 @@
         <p>Other include for teacher user</p>
         <c:choose>
             <c:when test="${caller == 'teacher'}">
+                <c:set var="viewTitle" value="All Courses" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller != 'teacher'}">

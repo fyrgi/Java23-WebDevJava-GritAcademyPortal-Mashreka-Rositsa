@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Course List</h2>
+  <h2><c:out value="${viewTitle}" /></h2>
   <table class="table">
     <thead>
       <tr>

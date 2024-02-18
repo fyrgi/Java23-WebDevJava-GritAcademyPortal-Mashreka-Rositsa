@@ -1,31 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="fragments/header.jsp" %>
-<div class="container">
-        <h2>Course List</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Points</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${coursesData}" var="course" varStatus="status">
-                    <c:if test="${status.index != 0}"> <!-- Skip header row -->
-                        <tr>
-                            <td>${course[0]}</td> <!--  id -->
-                            <td>${course[1]}</td> <!-- course name -->
-                            <td>${course[2]}</td> <!-- points -->
-                            <td>${course[3]}</td> <!-- description -->
-                        </tr>
-                    </c:if>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
+
+<c:set var="viewTitle" value="All Courses" scope="request" />
+<%@ include file="fragments/tableView.jsp" %>
+
 
 <%@ include file="fragments/footer.jsp" %>

@@ -17,46 +17,52 @@ import java.util.LinkedList;
 @WebServlet(("/mypage"))
 public class MyPageServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserBean userBeanCon = (UserBean) getServletContext().getAttribute("userBean");
+        UserBean userBeanSess = (UserBean) req.getSession().getAttribute("userBean");
         String state = (String) getServletContext().getAttribute("userState");
+        String userId = userBeanSess.getId();
 
-        if (state != null && state.equals("confirmed") && userBean != null) {
-            String userType = String.valueOf(userBean.getUserType());
+        if (state != null && state.equals("confirmed") && userBeanSess != null) {
+            String userType = String.valueOf(userBeanSess.getUserType());
             LinkedList<String[]> databaseData;
             LinkedList<String> tableHeaders;
             System.out.println("User Type: " + userType);
-
-            switch (userType) {
-                case "student":
-                    String userId = userBean.getId();
+            if(state == "confirmed" && userBeanSess != null) {
+                // userBean is stored in session after login. The one in
+                // Now the correct data can be retrieved from the bean
+                UserBean userBean = (UserBean) req.getSession().getAttribute("userBean");
+                String privilegeType = String.valueOf(userBean.getPrivilegeType());
+                if (!userType.equals("teacher")) {
                     String student = "studentCourses";
                     // set the context attribute to find next action in myPage
-                    request.getSession().setAttribute("caller", student);
+                    req.getSession().setAttribute("caller", student);
                     databaseData = DBConnector.getConnector().selectQuery("EnrolledCoursesOverview", userId);
                     //System.out.println(Arrays.toString(Arrays.stream(databaseData.get(0)).toArray()));
                     tableHeaders = buildTableHeaders("ID", "Course Name", "Points", "Description", "Student name", "Teacher name");
                     getServletContext().setAttribute("coursesData", databaseData);
                     getServletContext().setAttribute("tableHeaders", tableHeaders);
-                    request.getRequestDispatcher("myPage.jsp").forward(request, response);
-                    break;
-                case "teacher":
-                    // Teacher-specific logic
-                    // TODO: Implement teacher-specific logic
-                    break;
-                case "superadmin":
-                    // Superadmin-specific logic
-                    // TODO: Implement superadmin-specific logic
-                    break;
-                default:
-                    // Handle unknown user types
-                    // TODO: Implement logic for unknown user types
-                    break;
+                    req.getRequestDispatcher("myPage.jsp").forward(req, resp);
+                } else if (privilegeType.equals("superadmin")) {
+                    System.out.println("No access");
+                } else {
+                    String teacher = "teacher";
+                    req.getSession().setAttribute("caller", teacher);
+                    databaseData = DBConnector.getConnector().selectQuery("showAllCourses");
+                    getServletContext().setAttribute("coursesData", databaseData);
+                    tableHeaders = new LinkedList<>();
+                    tableHeaders.add("ID");
+                    tableHeaders.add("Course");
+                    tableHeaders.add("Points");
+                    tableHeaders.add("Description");
+                    getServletContext().setAttribute("tableHeaders", tableHeaders);
+                    req.getRequestDispatcher("myPage.jsp").forward(req, resp);
+                }
             }
         } else {
             // User is not logged in, redirect to login page
             System.out.println("User not confirmed, redirecting to login page");
-            response.sendRedirect("login.jsp");
+            resp.sendRedirect("login.jsp");
         }
     }
 
