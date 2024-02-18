@@ -8,6 +8,31 @@
     <c:when test="${userBean.userType == 'student' && userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/student/navStudent.jsp" %>
         <p>Other include for student</p>
+        <!-- Table for enrolled courses -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Points</th>
+                        <th>Description</th>
+                        <th>Student Name</th>
+                        <th>Teacher Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="course" items="${studentCoursesData}">
+                        <tr>
+                            <td>${course.id}</td>
+                            <td>${course.name}</td>
+                            <td>${course.points}</td>
+                            <td>${course.description}</td>
+                            <td>${course.student_name}</td>
+                            <td>${course.teacher_name}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'user'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
