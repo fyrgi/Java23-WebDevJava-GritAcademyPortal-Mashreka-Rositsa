@@ -191,11 +191,14 @@ public class MyPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         LinkedList<String[]> databaseData = new LinkedList<>();
         LinkedList<String> tableHeaders = new LinkedList<>();
+        //TODO put all this part into an if that checks that the user is coming from a part of the menu that uses this form.
         String id = req.getParameter("id");
         String fname = req.getParameter("fname");
         String lname = req.getParameter("lname");
         String searchFor = req.getParameter("search_for");
+        // student and teacher are using the same fields for search but are displaying different results.
         if(searchFor.equals("student")){
+            // the first ifs up to ELSE will handle the allowed cases and will display result based on which query was caled
             if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
                 tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
                 databaseData = DBConnector.getConnector().selectQuery("showRegistrationsWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id"));
@@ -206,6 +209,7 @@ public class MyPageServlet extends HttpServlet {
                 tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
                 databaseData = DBConnector.getConnector().selectQuery("showRegistrationsName", req.getParameter("fname"), req.getParameter("lname"));
             } else {
+                // in here we are only checking the possible errors (one name field was left empty or all fields were left empty)
                 if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
                     String errorMsg = "Both names should be filled";
                     if(!errorMsg.isEmpty()){
@@ -216,6 +220,7 @@ public class MyPageServlet extends HttpServlet {
                 } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
                     System.out.println("all fields are empty");
                 }
+                // at the end we will set the result data into the lists
                 tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
                 databaseData = DBConnector.getConnector().selectQuery("showStudents");
             }
@@ -244,10 +249,10 @@ public class MyPageServlet extends HttpServlet {
                 databaseData = DBConnector.getConnector().selectQuery("showTeachers");
             }
         }
+        // after we have set the data either for teacher or for student we have to send it via session.
         //answerRequest
         String teacher = "answerRequest";
         req.getSession().setAttribute("caller", teacher);
-        System.out.println(req.getSession().getAttribute("caller"));
         req.getSession().setAttribute("coursesData", databaseData);
         req.getSession().setAttribute("tableHeaders", tableHeaders);
         req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
