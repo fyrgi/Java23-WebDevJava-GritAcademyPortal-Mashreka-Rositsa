@@ -22,7 +22,7 @@ public class CoursesServlet extends HttpServlet {
 
         LinkedList<String[]> coursesData;
         LinkedList<String> tableHeaders;
-
+        System.out.println(req.getServletContext().getAttribute("userState"));
         // Fetch course data using the selectQuery method
         coursesData = DBConnector.getConnector().selectQuery("showAllCourses");
         tableHeaders = buildTableHeaders("ID", "Name", "Points", "Description");

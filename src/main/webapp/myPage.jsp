@@ -24,8 +24,12 @@
         <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
         <p>Other include for teacher user</p>
         <c:choose>
-            <c:when test="${caller == 'teacher'}">
+            <c:when test="${caller == 'teacherAllCourses'}">
                 <c:set var="viewTitle" value="All Courses" scope="request" />
+                <%@ include file="fragments/tableView.jsp" %>
+            </c:when>
+            <c:when test="${caller == 'teacherAllStudents'}">
+                <c:set var="viewTitle" value="All Students" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller != 'teacher'}">
