@@ -50,12 +50,16 @@ public class MyPageServlet extends HttpServlet {
                         tableHeaders = buildTableHeaders("ID", "Course Name", "Points", "Description", "Student name", "Teacher name");
                         req.getSession().setAttribute("coursesData", databaseData);
                         req.getSession().setAttribute("tableHeaders", tableHeaders);
-                        req.getRequestDispatcher("myPage.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
                     } else if(comingFromSubMenu!=null && comingFromSubMenu.equals("my-classmates")){
                         //TODO show all of the students classmates by course
                         String student = "studentClass";
                         // set the context attribute to find next action in myPage
                         req.getSession().setAttribute("caller", student);
+                        databaseData = DBConnector.getConnector().selectQuery("ClassMates", userId);
+                        tableHeaders = buildTableHeaders("ID","Student name", "Course Name","ClassMates Name");
+                        req.getSession().setAttribute("coursesData", databaseData);
+                        req.getSession().setAttribute("tableHeaders", tableHeaders);
                         System.out.println("Students classmates");
                         req.getRequestDispatcher("myPage.jsp").forward(req, resp);
                     } else if(comingFromSubMenu!=null){
