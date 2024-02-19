@@ -12,13 +12,13 @@
                 <c:set var="viewTitle" value="All Courses" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
-            <c:when test="${caller != 'teacher'}">
-                <p>Other include for teacher user</p>
+            <c:when test="${caller == 'studentClass'}">
+                <p>Now it is not implemented, but it can show a table with all the classmates of a student ordered by course</p>
+            </c:when>
+            <c:when test="${caller == 'error'}">
+                <%@ include file="fragments/404.jsp" %>
             </c:when>
         </c:choose>
-                </tbody>
-            </table>
-
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'user'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
@@ -32,19 +32,67 @@
                 <c:set var="viewTitle" value="All Students" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
-            <c:when test="${caller != 'teacher'}">
-                <p>Other include for teacher user</p>
+            <c:when test="${caller == 'teacherCoursesForStudent'}">
+                <p>To be implemented. Form and Table</p>
+            </c:when>
+            <c:when test="${caller == 'teacherInfoOfCourse'}">
+                <p>To be implemented Form and Table</p>
+            </c:when>
+            <c:when test="${caller == 'error'}">
+                <%@ include file="fragments/404.jsp" %>
             </c:when>
         </c:choose>
     </c:when>
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'admin'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navAdminTeacher.jsp" %>
         <p>Other include for teacher admin</p>
+        <c:choose>
+            <c:when test="${caller == 'teacherAllCourses'}">
+                <c:set var="viewTitle" value="All Courses" scope="request" />
+                <%@ include file="fragments/tableView.jsp" %>
+            </c:when>
+            <c:when test="${caller == 'teacherAllStudents'}">
+                <c:set var="viewTitle" value="All Students" scope="request" />
+                <%@ include file="fragments/tableView.jsp" %>
+            </c:when>
+            <c:when test="${caller == 'teacherCoursesForStudent'}">
+                <p>To be implemented Form and Table</p>
+            </c:when>
+            <c:when test="${caller == 'teacherInfoOfCourse'}">
+                <p>To be implemented Form and Table</p>
+            </c:when>
+            <c:when test="${caller == 'teacherRegisterTeacherForCourse'}">
+                <p>To be implemented Dropdowns and Table</p>
+            </c:when>
+            <c:when test="${caller == 'teacherRegisterStudentInCourse'}">
+                <p>To be implemented Dropdowns and Table</p>
+            </c:when>
+            <c:when test="${caller == 'remove'}">
+                <p>To be implemented Depends on what we will remove</p>
+            </c:when>
+            <c:when test="${caller == 'error'}">
+                <%@ include file="fragments/404.jsp" %>
+            </c:when>
+        </c:choose>
     </c:when>
-    <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'superadmin'&& userBean.stateType == 'confirmed'}">
+    <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'superadmin' && userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navSuperadmin.jsp" %>
         <p>Other include for teacher super admin</p>
+        <c:choose>
+            <c:when test="${caller == 'makeAdmin'}">
+                <p>To be implemented! Could show a form and a table.<br>The form can be to add id and to specify if we want to make admin or user wit ha radio</p>
+            </c:when>
+            <c:when test="${caller == 'reports'}">
+                <p>To be implemented! Could show buttons which upon click will display a table with statistics</p>
+            </c:when>
+            <c:when test="${caller == 'error'}">
+                <%@ include file="fragments/404.jsp" %>
+            </c:when>
+        </c:choose>
     </c:when>
+<c:otherwise>
+    <%@ include file="fragments/404.jsp" %>
+</c:otherwise>
 </c:choose>
 
 <%@ include file="fragments/footer.jsp" %>

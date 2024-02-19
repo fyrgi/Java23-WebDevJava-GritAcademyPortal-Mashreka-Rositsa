@@ -5,7 +5,6 @@
 
 <main>
     <%@ include file="fragments/loginForm.jsp" %>
-
 </main>
 
 <%@ include file="fragments/footer.jsp" %>

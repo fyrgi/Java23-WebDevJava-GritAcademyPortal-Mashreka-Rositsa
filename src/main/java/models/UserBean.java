@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class UserBean implements Serializable {
 
     //shoudl be set to the same is it is in the DB
-    private String id;
+    private String id = "0";
     private USER_TYPE userType;
     private PRIVILEGE_TYPE privilegeType = PRIVILEGE_TYPE.user;
     private STATE_TYPE stateType = STATE_TYPE.anonymous;
