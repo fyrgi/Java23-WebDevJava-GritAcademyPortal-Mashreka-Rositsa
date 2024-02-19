@@ -13,7 +13,8 @@
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller == 'studentClass'}">
-                <p>Now it is not implemented, but it can show a table with all the classmates of a student ordered by course</p>
+                <c:set var="viewTitle" value="Class-mates" scope="request" />
+                <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller == 'error'}">
                 <%@ include file="fragments/404.jsp" %>
