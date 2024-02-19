@@ -33,11 +33,8 @@
                 <c:set var="viewTitle" value="All Students" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
-            <c:when test="${caller == 'teacherCoursesForStudent'}">
+            <c:when test="${caller == 'teacherCoursesOfPerson'}">
                 <%@ include file="fragments/teacher/formPersonsCourses.jsp" %>
-            </c:when>
-            <c:when test="${caller == 'teacherInfoOfCourse'}">
-                <p>To be implemented Form and Table</p>
             </c:when>
             <c:when test="${caller == 'error'}">
                 <%@ include file="fragments/404.jsp" %>
@@ -56,11 +53,11 @@
                 <c:set var="viewTitle" value="All Students" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
-            <c:when test="${caller == 'teacherCoursesForStudent'}">
+            <c:when test="${caller == 'teacherCoursesOfPerson'}">
                 <%@ include file="fragments/teacher/formPersonsCourses.jsp" %>
             </c:when>
-            <c:when test="${caller == 'teacherInfoOfCourse'}">
-                <p>To be implemented Form and Table</p>
+            <c:when test="${caller == 'teacherAddCourse'}">
+                <p>To be implemented Dropdowns and Table</p>
             </c:when>
             <c:when test="${caller == 'teacherRegisterTeacherForCourse'}">
                 <p>To be implemented Dropdowns and Table</p>

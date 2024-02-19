@@ -15,8 +15,8 @@
     </div>
 
     <div class="form-group">
-        <label for="user_type">Student or teacher:</label>
-        <select id="user_type" class="form-select" name="user_type">
+        <label for="search_for">Student or teacher:</label>
+        <select id="search_for" class="form-select" name="search_for">
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
         </select>
