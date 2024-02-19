@@ -33,7 +33,7 @@
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherCoursesForStudent'}">
-                <p>To be implemented. Form and Table</p>
+                <%@ include file="fragments/teacher/formPersonsCourses.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherInfoOfCourse'}">
                 <p>To be implemented Form and Table</p>
@@ -56,7 +56,7 @@
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherCoursesForStudent'}">
-                <p>To be implemented Form and Table</p>
+                <%@ include file="fragments/teacher/formPersonsCourses.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherInfoOfCourse'}">
                 <p>To be implemented Form and Table</p>
@@ -94,5 +94,10 @@
     <%@ include file="fragments/404.jsp" %>
 </c:otherwise>
 </c:choose>
+
+<c:if test="${caller == 'answerRequest'}">
+    <c:set var="viewTitle" value="All courses per person" scope="request" />
+    <%@ include file="fragments/tableView.jsp" %>
+</c:if>
 
 <%@ include file="fragments/footer.jsp" %>

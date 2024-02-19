@@ -185,8 +185,43 @@ public class MyPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        LinkedList<String[]> databaseData = new LinkedList<>();
+        LinkedList<String> tableHeaders = new LinkedList<>();
+        String id = req.getParameter("id");
+        String fname = req.getParameter("fname");
+        String lname = req.getParameter("lname");
+        System.out.println(fname+ lname + id);
+        if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+            tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
+            databaseData = DBConnector.getConnector().selectQuery("showRegistrationsWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id"));
+        } else if(!id.isEmpty() && fname.isEmpty() && lname.isEmpty()){
+            tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
+            databaseData = DBConnector.getConnector().selectQuery("showRegistrationsIdOnly", req.getParameter("id"));
+        } else if(id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+            tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
+            databaseData = DBConnector.getConnector().selectQuery("showRegistrationsName", req.getParameter("fname"), req.getParameter("lname"));
+        } else {
+            if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
+                String errorMsg = "Both names should be filled";
+                if(!errorMsg.isEmpty()){
+                    //out.println("<p class=error>"+errorMsg+"</p>");
+                    System.out.println(errorMsg);
+                    errorMsg="";
+                }
+                tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
+                databaseData = DBConnector.getConnector().selectQuery("showStudents");
+            } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
+                tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
+                databaseData = DBConnector.getConnector().selectQuery("showStudents");
+            }
 
-
+        }
+        //answerRequest
+        String teacher = "answerRequest";
+        req.getSession().setAttribute("caller", teacher);
+        System.out.println(req.getSession().getAttribute("caller"));
+        req.getSession().setAttribute("coursesData", databaseData);
+        req.getSession().setAttribute("tableHeaders", tableHeaders);
         req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
     }
 
