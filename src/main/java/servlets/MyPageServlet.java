@@ -284,6 +284,22 @@ public class MyPageServlet extends HttpServlet {
         } else {
             System.out.println("Unknown psot");
         }
+        //add course
+
+        String courseName = req.getParameter("courseName");
+        String points = req.getParameter("points");
+        String description = req.getParameter("description");
+
+
+        String state = (String) getServletContext().getAttribute("userState");
+        if(courseName.trim().isEmpty() || points.trim().isEmpty() ){
+            System.out.println("courseName, points cannot be empty!");
+        } else {
+            boolean addCourseSuccessful = false;
+
+        }
+
+
     }
 
     protected LinkedList<String> buildTableHeaders(String...args){

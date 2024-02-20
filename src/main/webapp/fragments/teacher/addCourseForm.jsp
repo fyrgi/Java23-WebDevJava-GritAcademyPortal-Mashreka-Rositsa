@@ -1,10 +1,6 @@
 <div class="form-container">
         <h2>Add Course Form</h2>
-        <form action="addcourse" method="post">
-            <div class="form-group">
-                <label for="courseId">ID:</label>
-                <input type="text" id="courseId" name="courseId" class="form-input" required>
-            </div>
+        <form action="/mypage" method="post">
 
             <div class="form-group">
                 <label for="courseName">Course Name:</label>
@@ -18,7 +14,7 @@
 
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" class="form-input" required></textarea>
+                <textarea id="description" name="description" class="form-input" ></textarea>
             </div>
 
             <button type="submit" class="btn">Add Course</button>
