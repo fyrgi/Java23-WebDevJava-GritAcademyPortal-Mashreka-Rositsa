@@ -36,6 +36,9 @@
             <c:when test="${caller == 'teacherCoursesOfPerson'}">
                 <%@ include file="fragments/teacher/formPersonsCourses.jsp" %>
             </c:when>
+            <c:when test="${caller == 'teacherCourseInformation'}">
+                <%@ include file="fragments/teacher/formCourseInformation.jsp" %>
+            </c:when>
             <c:when test="${caller == 'error'}">
                 <%@ include file="fragments/404.jsp" %>
             </c:when>
@@ -55,6 +58,9 @@
             </c:when>
             <c:when test="${caller == 'teacherCoursesOfPerson'}">
                 <%@ include file="fragments/teacher/formPersonsCourses.jsp" %>
+            </c:when>
+            <c:when test="${caller == 'teacherCourseInformation'}">
+                <%@ include file="fragments/teacher/formCourseInformation.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherAddCourse'}">
                 <p>To be implemented Dropdowns and Table</p>
@@ -94,7 +100,17 @@
 </c:choose>
 
 <c:if test="${caller == 'answerRequest'}">
-    <c:set var="viewTitle" value="All courses per person" scope="request" />
+    <c:choose>
+        <c:when test="${sentFromPost == 'personCourseSubmit'}">
+            <c:set var="viewTitle" value="Show all courses per person" scope="request" />
+        </c:when>
+        <c:when test="${sentFromPost == 'courseInfoSubmit'}">
+            <c:set var="viewTitle" value="Show course information per course" scope="request" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="viewTitle" value="Result set" scope="request" />
+        </c:otherwise>
+    </c:choose>
     <%@ include file="fragments/tableView.jsp" %>
 </c:if>
 

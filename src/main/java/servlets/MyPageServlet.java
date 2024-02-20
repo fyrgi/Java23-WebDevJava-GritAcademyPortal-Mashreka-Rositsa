@@ -28,7 +28,6 @@ public class MyPageServlet extends HttpServlet {
 
         }
         String state = (String) getServletContext().getAttribute("userState");
-        System.out.println(req.getParameter("sub"));
         if (state != null && state.equals("confirmed") && userBeanSess != null) {
             String userType = String.valueOf(userBeanSess.getUserType());
             LinkedList<String[]> databaseData;
@@ -137,9 +136,16 @@ public class MyPageServlet extends HttpServlet {
                          **/
                         String teacher = "teacherAddCourse";
                         req.getSession().setAttribute("caller", teacher);
-                        ;
                         req.getRequestDispatcher("myPage.jsp").forward(req, resp);
-                    }else if(comingFromSubMenu!=null && comingFromSubMenu.equals("teacher-course")){
+                    } else if(comingFromSubMenu!=null && comingFromSubMenu.equals("course-information")){
+                        /**
+                         Available only for teacher admin
+                         **/
+                        String teacher = "teacherCourseInformation";
+                        req.getSession().setAttribute("caller", teacher);
+
+                        req.getRequestDispatcher("myPage.jsp").forward(req, resp);
+                    } else if(comingFromSubMenu!=null && comingFromSubMenu.equals("teacher-course")){
                         /**
                          Available only for teacher admin
                          **/
@@ -192,70 +198,87 @@ public class MyPageServlet extends HttpServlet {
         LinkedList<String[]> databaseData = new LinkedList<>();
         LinkedList<String> tableHeaders = new LinkedList<>();
         //TODO put all this part into an if that checks that the user is coming from a part of the menu that uses this form.
-        String id = req.getParameter("id");
-        String fname = req.getParameter("fname");
-        String lname = req.getParameter("lname");
-        String searchFor = req.getParameter("search_for");
+        String sentFromPost = req.getParameter("personCourseSubmit");
         // student and teacher are using the same fields for search but are displaying different results.
-        if(searchFor.equals("student")){
-            // the first ifs up to ELSE will handle the allowed cases and will display result based on which query was caled
-            if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
-                tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
-                databaseData = DBConnector.getConnector().selectQuery("showRegistrationsWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id"));
-            } else if(!id.isEmpty() && fname.isEmpty() && lname.isEmpty()){
-                tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
-                databaseData = DBConnector.getConnector().selectQuery("showRegistrationsIdOnly", req.getParameter("id"));
-            } else if(id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
-                tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
-                databaseData = DBConnector.getConnector().selectQuery("showRegistrationsName", req.getParameter("fname"), req.getParameter("lname"));
-            } else {
-                // in here we are only checking the possible errors (one name field was left empty or all fields were left empty)
-                if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
-                    String errorMsg = "Both names should be filled";
-                    if(!errorMsg.isEmpty()){
-                        //out.println("<p class=error>"+errorMsg+"</p>");
-                        System.out.println(errorMsg);
-                        errorMsg="";
+        if(sentFromPost.equals("personCourseSubmit")){
+            String id = req.getParameter("id");
+            String fname = req.getParameter("fname");
+            String lname = req.getParameter("lname");
+            String searchFor = req.getParameter("search_for");
+            if(searchFor.equals("student")){
+                // the first ifs up to ELSE will handle the allowed cases and will display result based on which query was caled
+                if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+                    tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
+                    databaseData = DBConnector.getConnector().selectQuery("showRegistrationsWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id"));
+                } else if(!id.isEmpty() && fname.isEmpty() && lname.isEmpty()){
+                    tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
+                    databaseData = DBConnector.getConnector().selectQuery("showRegistrationsIdOnly", req.getParameter("id"));
+                } else if(id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+                    tableHeaders =  buildTableHeaders("ID","Student","Course","Points");
+                    databaseData = DBConnector.getConnector().selectQuery("showRegistrationsName", req.getParameter("fname"), req.getParameter("lname"));
+                } else {
+                    // in here we are only checking the possible errors (one name field was left empty or all fields were left empty)
+                    if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
+                        String errorMsg = "Both names should be filled";
+                        if(!errorMsg.isEmpty()){
+                            //out.println("<p class=error>"+errorMsg+"</p>");
+                            System.out.println(errorMsg);
+                            errorMsg="";
+                        }
+                    } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
+                        System.out.println("all fields are empty");
                     }
-                } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
-                    System.out.println("all fields are empty");
+                    // at the end we will set the result data into the lists
+                    tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
+                    databaseData = DBConnector.getConnector().selectQuery("showStudents");
                 }
-                // at the end we will set the result data into the lists
-                tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
-                databaseData = DBConnector.getConnector().selectQuery("showStudents");
-            }
-        }else {
-            if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
-                tableHeaders =  buildTableHeaders("ID","Teacher","Course","Points");
-                databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id"));
-            } else if(!id.isEmpty() && fname.isEmpty() && lname.isEmpty()){
-                tableHeaders =  buildTableHeaders("ID","Teacher","Course","Points");
-                databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherIdOnly", req.getParameter("id"));
-            } else if(id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
-                tableHeaders =  buildTableHeaders("ID","Teacher","Course","Points");
-                databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherName", req.getParameter("fname"), req.getParameter("lname"));
-            } else {
-                if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
-                    String errorMsg = "Both names should be filled";
-                    if(!errorMsg.isEmpty()){
-                        //out.println("<p class=error>"+errorMsg+"</p>");
-                        System.out.println(errorMsg);
-                        errorMsg="";
+            }else {
+                if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+                    tableHeaders =  buildTableHeaders("ID","Teacher","Course","Points");
+                    databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id"));
+                } else if(!id.isEmpty() && fname.isEmpty() && lname.isEmpty()){
+                    tableHeaders =  buildTableHeaders("ID","Teacher","Course","Points");
+                    databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherIdOnly", req.getParameter("id"));
+                } else if(id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+                    tableHeaders =  buildTableHeaders("ID","Teacher","Course","Points");
+                    databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherName", req.getParameter("fname"), req.getParameter("lname"));
+                } else {
+                    if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
+                        String errorMsg = "Both names should be filled";
+                        if(!errorMsg.isEmpty()){
+                            //out.println("<p class=error>"+errorMsg+"</p>");
+                            System.out.println(errorMsg);
+                            errorMsg="";
+                        }
+                    } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
+                        System.out.println("all fields are empty");
                     }
-                } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
-                    System.out.println("all fields are empty");
+                    tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
+                    databaseData = DBConnector.getConnector().selectQuery("showTeachers");
                 }
-                tableHeaders =  buildTableHeaders("ID","First name","Last name","City","Email");
-                databaseData = DBConnector.getConnector().selectQuery("showTeachers");
+
             }
+            // after we have set the data either for teacher or for student we have to send it via session.
+            //answerRequest
+            String teacher = "answerRequest";
+            req.getSession().setAttribute("caller", teacher);
+            req.getSession().setAttribute("coursesData", databaseData);
+            req.getSession().setAttribute("tableHeaders", tableHeaders);
+            req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
+        } else if (sentFromPost.equals("courseInfoSubmit")){
+            String id = req.getParameter("id");
+            System.out.println(id);
+            String name = req.getParameter("name");
+            String teacher = "answerRequest";
+            req.getSession().setAttribute("caller", teacher);
+            tableHeaders =  buildTableHeaders("ID","Course name","Points","Teachers","Students");
+            databaseData = DBConnector.getConnector().selectQuery("showCourseInformation", id, '%'+name+'%');
+            req.getSession().setAttribute("coursesData", databaseData);
+            req.getSession().setAttribute("tableHeaders", tableHeaders);
+            req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
+        } else {
+            System.out.println("Unknown psot");
         }
-        // after we have set the data either for teacher or for student we have to send it via session.
-        //answerRequest
-        String teacher = "answerRequest";
-        req.getSession().setAttribute("caller", teacher);
-        req.getSession().setAttribute("coursesData", databaseData);
-        req.getSession().setAttribute("tableHeaders", tableHeaders);
-        req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
     }
 
     protected LinkedList<String> buildTableHeaders(String...args){
