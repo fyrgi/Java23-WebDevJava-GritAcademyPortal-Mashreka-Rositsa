@@ -95,7 +95,9 @@
         </c:choose>
     </c:when>
 <c:otherwise>
-    <%@ include file="fragments/404.jsp" %>
+    <c:if test="${userState == 'anonymous'}">
+        <p>Not logged in</p>
+    </c:if>
 </c:otherwise>
 </c:choose>
 
