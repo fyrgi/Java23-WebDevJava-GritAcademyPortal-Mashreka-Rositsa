@@ -9,7 +9,7 @@
 <body>
 <!-- Navigation Menu  -->
     <nav class="navbar">
-        <a href="/index.jsp">Home</a>
+        <a href="/index">Home</a>
         <a href="/courses">Courses</a>
         <a href="/login">Login</a>
         <a href="/mypage">MyPage</a>

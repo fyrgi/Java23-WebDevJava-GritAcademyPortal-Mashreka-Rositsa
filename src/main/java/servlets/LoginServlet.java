@@ -2,11 +2,11 @@ package servlets;
 
 import models.*;
 
+import javax.print.attribute.standard.PresentationDirection;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,11 +14,17 @@ import java.util.List;
 /**
  * Servlet that is responsible for the way we create a Bean or navigate user in case of a login attempt.
  * */
+@WebListener
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet implements HttpSessionListener  {
+    public void sessionDestroyed(final HttpSessionEvent event)  {
+        getServletContext().setAttribute("userState", "anonymous");
+        System.out.println("OUT");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // when the page is called we want to make sure of the global state in context.
         // in the state we will save value anonymous if the user is not logged in and
         // confirmed if they have successfully logged in
@@ -50,18 +56,22 @@ public class LoginServlet extends HttpServlet {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("studentLogin", username, password);
             // the first returned row is always the table columns
             if (data.size() > 1) {
-                req.getSession().setMaxInactiveInterval(120);
+                System.out.println(data.size());
+                req.getSession().setMaxInactiveInterval(10);
                 // create a bean for the student. Later we will have to eaven save info about ID of the connected user
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, "user",STATE_TYPE.confirmed);
                 // updates the session with the new data in the userBean. I will try to initialize it as well
                 req.getSession().setAttribute("userBean", userBean);
+                System.out.println("FROM LOGIN Context" + req.getServletContext().getAttribute("userBean"));
+
+                System.out.println("FROM Login Session " + req.getSession().getAttribute("userBean"));
                 // execute the steps after successful login
                 success = true;
             }
         } else if (userType.equals("teacher")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
             if (data.size() > 1) {
-                req.getSession().setMaxInactiveInterval(120);
+                req.getSession().setMaxInactiveInterval(10);
                 // get the array with data about the teacher and find the LAST COLUMN IN THE DATABASE. If it is changed
                 // userbean will get unexpected data for privilege type but it has a default on user so the system won't crash
                 user = data.get(1);
@@ -91,4 +101,5 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
+
 }
