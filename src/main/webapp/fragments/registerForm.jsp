@@ -1,10 +1,6 @@
 <div class="form-container">
         <h2>Registration Form</h2>
         <form action="/register" method="post">
-            <div class="form-group">
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id" class="form-input" required>
-            </div>
 
             <div class="form-group">
                 <label for="firstName">First Name:</label>
@@ -18,17 +14,17 @@
 
             <div class="form-group">
                 <label for="town">Town:</label>
-                <input type="text" id="town" name="town" class="form-input" required>
+                <input type="text" id="town" name="town" class="form-input">
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" id="email" name="email" class="form-input" required>
+                <input type="text" id="email" name="email" class="form-input">
             </div>
 
             <div class="form-group">
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" class="form-input" required>
+                <input type="tel" id="phone" name="phone" class="form-input">
             </div>
 
             <div class="form-group">

@@ -46,36 +46,23 @@ public class RegisterServlet extends HttpServlet {
         String userType = request.getParameter("userType");
 
         String state = (String) getServletContext().getAttribute("userState");
-
-        // Get session
-        HttpSession session = request.getSession();
-
-        // Check if the user has admin privileges
-        UserBean userBean = (UserBean) session.getAttribute("userBean");
-        if (userBean != null && userBean.getPrivilegeType() == PRIVILEGE_TYPE.admin && userBean.getUserType() == USER_TYPE.teacher && state.equals("confirmed")) {
-            // Insert the new user into the appropriate table based on userType
+        if(firstName.trim().isEmpty() || lastName.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty()){
+            System.out.println("Names, username and password cannot be empty!");
+        } else {
             boolean registrationSuccessful = false;
             if (userType.equals("student")) {
-                registrationSuccessful = DBConnector.getConnector().insertQuery("registerNewStudent", id, firstName, lastName, town, email, phone, username, password);
+                registrationSuccessful = DBConnector.getConnector().insertQuery("registerNewStudent", firstName, lastName, town, email, phone, username, password, "S","S","S","S","S","S","S");
             } else if (userType.equals("teacher")) {
-                registrationSuccessful = DBConnector.getConnector().insertQuery("registerNewTeacher", id, firstName, lastName, town, email, phone, username, password);
-            }
-
-            if (registrationSuccessful) {
-                // Registration successful, update userBean with new id
-                userBean.setId(id);
-                session.setAttribute("userBean", userBean);
-                session.setAttribute("userState", String.valueOf(userBean.getStateType()));
-                response.sendRedirect("/register.jsp");
+                registrationSuccessful = DBConnector.getConnector().insertQuery("registerNewTeacher", firstName, lastName, town, email, phone, username, password, "S","S","S","S","S","S","S");
             } else {
-                // Registration failed
-
+                System.out.println("choose type of input");
+            }
+            if (registrationSuccessful) {
+                System.out.println("success");
+            } else {
                 response.sendRedirect("/error.jsp");
             }
-        } else {
-            // User does not have admin privileges or is not a teacher
-
-            response.sendRedirect("/error.jsp");
         }
+
     }
 }

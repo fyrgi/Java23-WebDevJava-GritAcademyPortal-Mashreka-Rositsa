@@ -8,5 +8,5 @@
     <a href="/mypage?sub=student-course">Register student in course</a>
     <a href="/mypage?sub=course-information">Course information</a>
     <a href="/register">Registration</a>
-    <a href="/mypage?sub=all-courses">Logout</a>
+    <a href="/loggedout" >Logout</a>
 </nav>
