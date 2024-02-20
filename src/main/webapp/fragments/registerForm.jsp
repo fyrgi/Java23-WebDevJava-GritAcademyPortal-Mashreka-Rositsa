@@ -23,12 +23,12 @@
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="form-input" required>
+                <input type="text" id="email" name="email" class="form-input" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" class="form-input" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                <input type="tel" id="phone" name="phone" class="form-input" required>
             </div>
 
             <div class="form-group">
