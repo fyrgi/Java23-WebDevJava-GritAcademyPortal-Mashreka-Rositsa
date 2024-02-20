@@ -267,12 +267,17 @@ public class MyPageServlet extends HttpServlet {
             req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
         } else if (sentFromPost.equals("courseInfoSubmit")){
             String id = req.getParameter("id");
-            System.out.println(id);
-            String name = req.getParameter("name");
+            if(id.isEmpty()){
+                id = "0";
+            }
+            String name = req.getParameter("name").trim();
+            if(!name.trim().isEmpty()){
+                name = "%"+name+"%";
+            }
             String teacher = "answerRequest";
             req.getSession().setAttribute("caller", teacher);
             tableHeaders =  buildTableHeaders("ID","Course name","Points","Teachers","Students");
-            databaseData = DBConnector.getConnector().selectQuery("showCourseInformation", id, '%'+name+'%');
+            databaseData = DBConnector.getConnector().selectQuery("showCourseInformation", id, name);
             req.getSession().setAttribute("coursesData", databaseData);
             req.getSession().setAttribute("tableHeaders", tableHeaders);
             req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
