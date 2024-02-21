@@ -170,7 +170,13 @@ public class MyPageServlet extends HttpServlet {
                         req.getSession().setAttribute("caller", teacher);
                         //TODO implement association from student into course.
                         // One student cannot be in the same course twice.
-                        System.out.println("Register student in course. Forms and table");
+
+                        LinkedList<String[]> students = DBConnector.getConnector().selectQuery("showStudents");
+                        LinkedList<String> theirHeaders = buildTableHeaders("ID", "First name", "Last name", "City", "Email", "Phone");
+                        req.getSession().setAttribute("coursesData", students);
+                        req.getSession().setAttribute("tableHeaders", theirHeaders);
+
+                        //System.out.println("Register student in course. Forms and table");
                         req.getRequestDispatcher("myPage.jsp").forward(req, resp);
                     }else if(comingFromSubMenu!=null && comingFromSubMenu.equals("remove")){
                         /**
@@ -286,7 +292,27 @@ public class MyPageServlet extends HttpServlet {
             databaseData = DBConnector.getConnector().selectQuery("showCourseInformation", id, name);
             req.getSession().setAttribute("coursesData", databaseData);
             req.getSession().setAttribute("tableHeaders", tableHeaders);
+            req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
+        } else if(sentFromPost.equals("addPersonCourse")){
+            String teacher = "answerRequest";
+            req.getSession().setAttribute("caller", teacher);
+            String id = req.getParameter("id");
+            databaseData = DBConnector.getConnector().selectQuery("getSuggestions", id);
+            req.getSession().setAttribute("results", databaseData);
+            if(databaseData.size() > 1){
+                LinkedList<String[]> signedForCourses = DBConnector.getConnector().selectQuery("showRegistrationsIdOnly", id);
+                LinkedList<String> theirHeaders = buildTableHeaders("ID", "Course", "Teacher(s)", "Points");
+                req.getSession().setAttribute("coursesData", signedForCourses);
+                req.getSession().setAttribute("tableHeaders", theirHeaders);
+            } else {
+                LinkedList<String[]> students = DBConnector.getConnector().selectQuery("showStudents");
+                LinkedList<String> theirHeaders = buildTableHeaders("ID", "First name", "Last name", "City", "Email", "Phone");
+                req.getSession().setAttribute("coursesData", students);
+                req.getSession().setAttribute("tableHeaders", theirHeaders);
+            }
             req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
+        } else if(sentFromPost.equals("test")){
+            System.out.println("Test with JS suggestions");
         } else {
             System.out.println("Unknown psot");
         }

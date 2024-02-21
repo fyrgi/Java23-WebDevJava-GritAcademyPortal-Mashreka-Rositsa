@@ -21,6 +21,7 @@
             </c:when>
         </c:choose>
     </c:when>
+
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'user'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navUserTeacher.jsp" %>
         <p>Other include for teacher user</p>
@@ -44,6 +45,7 @@
             </c:when>
         </c:choose>
     </c:when>
+
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'admin'&& userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navAdminTeacher.jsp" %>
         <p>Other include for teacher admin</p>
@@ -69,7 +71,8 @@
                 <p>To be implemented Dropdowns and Table</p>
             </c:when>
             <c:when test="${caller == 'teacherRegisterStudentInCourse'}">
-                <p>To be implemented Dropdowns and Table</p>
+                <%@ include file="fragments/teacher/formAssignPersonToClass.jsp" %>
+                <%@ include file="fragments/tableView.jsp" %>
             </c:when>
             <c:when test="${caller == 'remove'}">
                 <p>To be implemented Depends on what we will remove</p>
@@ -79,6 +82,7 @@
             </c:when>
         </c:choose>
     </c:when>
+
     <c:when test="${userBean.userType == 'teacher' && userBean.privilegeType == 'superadmin' && userBean.stateType == 'confirmed'}">
         <%@ include file="fragments/teacher/navSuperadmin.jsp" %>
         <p>Other include for teacher super admin</p>
@@ -97,6 +101,7 @@
             </c:when>
         </c:choose>
     </c:when>
+
 <c:otherwise>
     <c:if test="${userState == 'anonymous'}">
         <p>Not logged in</p>
@@ -117,6 +122,7 @@
         </c:otherwise>
     </c:choose>
     <%@ include file="fragments/tableView.jsp" %>
+
 </c:if>
 
 <%@ include file="fragments/footer.jsp" %>
