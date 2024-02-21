@@ -86,9 +86,12 @@
             <c:when test="${caller == 'makeAdmin'}">
                 <p>To be implemented! Could show a form and a table.<br>The form can be to add id and to specify if we want to make admin or user wit ha radio</p>
             </c:when>
+
             <c:when test="${caller == 'reports'}">
-                <p>To be implemented! Could show buttons which upon click will display a table with statistics</p>
+                <c:set var="viewTitle" value="Statistics" scope="request" />
+                <%@ include file="fragments/tableView.jsp" %>
             </c:when>
+
             <c:when test="${caller == 'error'}">
                 <%@ include file="fragments/404.jsp" %>
             </c:when>

@@ -84,6 +84,11 @@ public class MyPageServlet extends HttpServlet {
                         String teacher = "reports";
                         // set the context attribute to find next action in myPage
                         req.getSession().setAttribute("caller", teacher);
+                        databaseData = DBConnector.getConnector().selectQuery("statistics");
+                        //System.out.println(Arrays.toString(Arrays.stream(databaseData.get(0)).toArray()));
+                        tableHeaders = buildTableHeaders("Average number of courses taken by students", "Courses  name in order of popularity", "num_students", "student_id", "Student  takes more courses");
+                        req.getSession().setAttribute("coursesData", databaseData);
+                        req.getSession().setAttribute("tableHeaders", tableHeaders);
                         System.out.println("Teacher superadmin statistics to be displayed");
                         req.getRequestDispatcher("myPage.jsp").forward(req, resp);
                     }  else if(comingFromSubMenu!=null){
