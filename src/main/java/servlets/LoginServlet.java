@@ -29,12 +29,15 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
         // we don't sue the Error message now,
         // but later it may be used to store information about unsuccessful attempt of login
         req.getSession().setAttribute("errorMessage","");
+        System.out.println(currState);
         // if the user is not logged in they will be able to see the login page which calls the login form
         if(currState == null || currState.equals("anonymous")){
             req.getRequestDispatcher("/login.jsp").forward(req,resp);
-        } else {
+        } else if (currState.equals("confirmed")) {
             // otherwise they will be forwarded to their view of myPage
             req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
+        } else {
+            req.getRequestDispatcher("/login.jsp").forward(req,resp);
         }
     }
 

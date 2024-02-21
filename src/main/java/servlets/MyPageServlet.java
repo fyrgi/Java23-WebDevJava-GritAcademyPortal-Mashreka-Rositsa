@@ -317,10 +317,15 @@ public class MyPageServlet extends HttpServlet {
             String courseName = req.getParameter("courseName");
             String pointsStr = req.getParameter("points");
 
-            if(!courseName.isEmpty() && !pointsStr.isEmpty() && req.getServletContext().getAttribute("userState").equals("confirmed")){
-                DBConnector.getConnector().insertQuery("addNewCourse", courseName,pointsStr,req.getParameter("description"),"S","I","S");
-                System.out.println("Course added successfully");
-                req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
+            if(!courseName.isEmpty() && !pointsStr.isEmpty()) {
+                if(req.getServletContext().getAttribute("userState").equals("confirmed")){
+                    DBConnector.getConnector().insertQuery("addNewCourse", courseName, pointsStr, req.getParameter("description"), "S", "I", "S");
+                    System.out.println("Course added successfully");
+                    req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
+                } else {
+                    System.out.println("the course was not added");
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                }
             }
         }
         /*// Adding a course by teacher admin
