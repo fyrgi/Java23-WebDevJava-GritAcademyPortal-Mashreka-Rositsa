@@ -1,6 +1,6 @@
 <div class="form-container">
         <h2>Add Course Form</h2>
-        <form action="/mypage" method="post">
+        <form action="/mypage?sub=add-course" method="post">
 
             <div class="form-group">
                 <label for="courseName">Course Name:</label>
