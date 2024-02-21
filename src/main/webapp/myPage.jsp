@@ -65,7 +65,7 @@
                 <%@ include file="fragments/teacher/formCourseInformation.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherAddCourse'}">
-                <p>To be implemented Dropdowns and Table</p>
+               <%@ include file="fragments/teacher/addCourseForm.jsp" %>
             </c:when>
             <c:when test="${caller == 'teacherRegisterTeacherForCourse'}">
                 <p>To be implemented Dropdowns and Table</p>
