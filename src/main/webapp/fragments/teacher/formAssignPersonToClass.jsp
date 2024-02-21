@@ -1,0 +1,17 @@
+<form id="searchBy" class="form-container" action="/mypage" method="post">
+
+    <div class="form-group">
+        <label for="id">ID Person:</label>
+        <input type="text" id="id" class="form-input" name="id">
+    </div>
+
+    <div class="form-group">
+        <label for="add_for">Student or teacher:</label>
+        <select id="add_for" class="form-select" name="add_for">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+    </div>
+
+    <button type="submit" value="addPersonCourse" name="personCourseSubmit" class="btn btn-primary">Login</button>
+</form>
