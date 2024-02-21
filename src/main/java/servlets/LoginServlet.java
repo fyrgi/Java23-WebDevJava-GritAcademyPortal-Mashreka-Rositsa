@@ -14,13 +14,10 @@ import java.util.List;
 /**
  * Servlet that is responsible for the way we create a Bean or navigate user in case of a login attempt.
  * */
-@WebListener
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet implements HttpSessionListener  {
-    public void sessionDestroyed(final HttpSessionEvent event)  {
-        getServletContext().setAttribute("userState", "anonymous");
-        System.out.println("OUT");
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

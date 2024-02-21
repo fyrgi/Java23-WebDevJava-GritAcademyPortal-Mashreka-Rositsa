@@ -311,37 +311,28 @@ public class MyPageServlet extends HttpServlet {
                 req.getSession().setAttribute("tableHeaders", theirHeaders);
             }
             req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
-        } else if(sentFromPost.equals("test")){
+        } else if(sentFromPost.equals("addPersonCourse")){
             System.out.println("Test with JS suggestions");
-        } else {
-            System.out.println("Unknown psot");
+        } else if(sentFromPost.equals("addCourse")) {
+            String courseName = req.getParameter("courseName");
+            String pointsStr = req.getParameter("points");
+
+            if(!courseName.isEmpty() && !pointsStr.isEmpty() && req.getServletContext().getAttribute("userState").equals("confirmed")){
+                DBConnector.getConnector().insertQuery("addNewCourse", courseName,pointsStr,req.getParameter("description"),"S","I","S");
+                System.out.println("Course added successfully");
+                req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
+            }
         }
-        // Adding a course by teacher admin
+        /*// Adding a course by teacher admin
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("userType") != null && session.getAttribute("privilegeType") != null) {
             String userType = (String) session.getAttribute("userType");
             String privilegeType = (String) session.getAttribute("privilegeType");
 
             if (userType.equals("teacher") && privilegeType.equals("admin")) {
-                String courseName = req.getParameter("courseName");
-                String pointsStr = req.getParameter("points");
-                String description = req.getParameter("description");
 
-                if (courseName.trim().isEmpty() || pointsStr.trim().isEmpty()) {
-                    System.out.println("Course name and points cannot be empty!");
-                    return;
-                }
-
-                try {
-                    int points = Integer.parseInt(pointsStr);
-                    DBConnector.getConnector().insertQuery("addNewCourse", courseName, String.valueOf(points), description, "S", "I", "S");
-                    System.out.println("Course added successfully");
-                } catch (NumberFormatException e) {
-                    System.out.println("Failed to parse points as integer");
-                    e.printStackTrace();
-                }
             }
-        }
+        }*/
     }
 
 

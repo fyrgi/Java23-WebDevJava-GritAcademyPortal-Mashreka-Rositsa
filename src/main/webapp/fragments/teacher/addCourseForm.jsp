@@ -1,6 +1,6 @@
 <div class="form-container">
         <h2>Add Course Form</h2>
-        <form action="/mypage?sub=add-course" method="post">
+        <form action="/mypage" method="post">
 
             <div class="form-group">
                 <label for="courseName">Course Name:</label>
@@ -9,7 +9,7 @@
 
             <div class="form-group">
                 <label for="points">Points:</label>
-                <input type="number" id="points" name="points" class="form-input" required>
+                <input type="number" id="points" name="points" class="form-input" min="5" required>
             </div>
 
             <div class="form-group">
@@ -17,6 +17,6 @@
                 <textarea id="description" name="description" class="form-input" ></textarea>
             </div>
 
-            <button type="submit" class="btn">Add Course</button>
+            <button type="submit" value="addCourse" name="personCourseSubmit" class="btn">Add Course</button>
         </form>
     </div>
