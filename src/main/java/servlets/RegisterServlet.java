@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve form data
-        String id = request.getParameter("id");
+
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String town = request.getParameter("town");
