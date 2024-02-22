@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
         } else if (userType.equals("teacher")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
             if (data.size() > 1) {
-                req.getSession().setMaxInactiveInterval(300);
+                req.getSession().setMaxInactiveInterval(10);
                 // get the array with data about the teacher and find the LAST COLUMN IN THE DATABASE. If it is changed
                 // userbean will get unexpected data for privilege type but it has a default on user so the system won't crash
                 user = data.get(1);

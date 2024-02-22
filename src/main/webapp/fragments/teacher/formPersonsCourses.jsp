@@ -23,5 +23,5 @@
         </select>
     </div>
 
-    <button type="submit" value="personCourseSubmit" name="personCourseSubmit" class="btn btn-primary">Login</button>
+    <button type="submit" value="personCourseSubmit" name="personCourseSubmit" class="btn btn-primary">Check</button>
 </form>
