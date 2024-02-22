@@ -155,13 +155,14 @@
             <c:set var="viewTitle" value="Show course information per course" scope="request" />
         </c:when>
 
-        <c:when test="${personCourseSubmit == 'courseInfoSubmit'}">
-            <c:set var="viewTitle" value="Show course information per course" scope="request" />
-        </c:when>
-
         <c:when test="${personCourseSubmit == 'addPersonCourse'}">
             <c:set var="viewTitle" value="Add Person Course info" scope="request" />
             <c:if test="${foundPerson == 'yes'}">
+                <%@ include file="fragments/teacher/formAssignPersonToClass.jsp" %>
+                <%@ include file="fragments/teacher/dropDownAvailableCourses.jsp" %>
+            </c:if>
+            <c:if test="${foundPerson == 'no'}">
+                <%@ include file="fragments/teacher/formAssignPersonToClass.jsp" %>
                 <%@ include file="fragments/teacher/dropDownAvailableCourses.jsp" %>
             </c:if>
         </c:when>

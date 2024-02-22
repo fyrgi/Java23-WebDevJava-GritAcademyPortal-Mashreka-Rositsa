@@ -1,4 +1,5 @@
 <form id="searchBy" class="form-container" action="/mypage" method="post">
+    <h2>Courses of Person</h2>
     <div class="form-group">
         <label for="fname">First name:</label>
         <input type="text" id="fname" class="form-input" name="fname">

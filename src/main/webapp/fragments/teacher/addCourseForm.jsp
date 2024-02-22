@@ -1,5 +1,5 @@
 <div class="form-container">
-        <h2>Add Course Form</h2>
+        <h2>Add new course</h2>
         <form action="/mypage" method="post">
 
             <div class="form-group">

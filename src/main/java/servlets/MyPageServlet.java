@@ -265,12 +265,15 @@ public class MyPageServlet extends HttpServlet {
                     tableHeaders = buildTableHeaders("ID", "First name", "Last name", "City", "Email");
                     databaseData = DBConnector.getConnector().selectQuery("showTeachers");
                 }
-
+                String teacher = "answerRequest";
+                req.getSession().setAttribute("caller", teacher);
+                req.getSession().setAttribute("personCourseSubmit", sentFromPost);
             }
             // after we have set the data either for teacher or for student we have to send it via session.
             //answerRequest
             String teacher = "answerRequest";
             req.getSession().setAttribute("caller", teacher);
+           System.out.println("Here it is " + sentFromPost);
             req.getSession().setAttribute("personCourseSubmit", sentFromPost);
             req.getSession().setAttribute("coursesData", databaseData);
             req.getSession().setAttribute("tableHeaders", tableHeaders);
@@ -304,13 +307,18 @@ public class MyPageServlet extends HttpServlet {
                 LinkedList<String> theirHeaders = buildTableHeaders("ID", "Course", "Teacher(s)", "Points");
                 req.getSession().setAttribute("coursesData", signedForCourses);
                 req.getSession().setAttribute("tableHeaders", theirHeaders);
+                LinkedList<String[]> availableCourses = DBConnector.getConnector().selectQuery("showAvailableCourses", id);
                 String foundPerson = "yes";
+                req.getSession().setAttribute("availableCourses", availableCourses);
                 req.getSession().setAttribute("foundPerson", foundPerson);
             } else {
+                req.getSession().removeAttribute("availableCourses");
                 LinkedList<String[]> students = DBConnector.getConnector().selectQuery("showStudents");
                 LinkedList<String> theirHeaders = buildTableHeaders("ID", "First name", "Last name", "City", "Email", "Phone");
+                String foundPerson = "no";
                 req.getSession().setAttribute("coursesData", students);
                 req.getSession().setAttribute("tableHeaders", theirHeaders);
+                req.getSession().setAttribute("foundPerson", foundPerson);
             }
             req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
         } else if (sentFromPost.equals("addCourse")) {

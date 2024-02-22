@@ -1,5 +1,5 @@
 <form id="searchBy" class="form-container" action="/mypage" method="post">
-
+    <h2>Register a person to a course.</h2>
     <div class="form-group">
         <label for="id">ID Person:</label>
         <input type="text" id="id" class="form-input" name="id">
