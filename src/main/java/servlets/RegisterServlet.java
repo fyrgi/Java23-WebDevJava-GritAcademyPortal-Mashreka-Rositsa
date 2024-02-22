@@ -22,14 +22,7 @@ public class RegisterServlet extends HttpServlet {
         UserBean userBean = (UserBean) session.getAttribute("userBean");
         String state = (String) getServletContext().getAttribute("userState");
 
-        // Check if the user is logged in, a teacher, and has admin privileges
-        if (userBean != null && userBean.getUserType() == USER_TYPE.teacher && userBean.getPrivilegeType() == PRIVILEGE_TYPE.admin && state.equals("confirmed")) {
-            // Forward to the registration page
-            req.getRequestDispatcher("/register.jsp").forward(req, resp);
-        } else {
-            // Redirect to login page
-            resp.sendRedirect("/login.jsp");
-        }
+        req.getRequestDispatcher("/register.jsp").forward(req, resp);
     }
 
     @Override

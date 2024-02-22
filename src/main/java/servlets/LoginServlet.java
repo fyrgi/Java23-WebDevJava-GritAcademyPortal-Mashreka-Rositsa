@@ -29,7 +29,6 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
         // we don't sue the Error message now,
         // but later it may be used to store information about unsuccessful attempt of login
         req.getSession().setAttribute("errorMessage","");
-        System.out.println(currState);
         // if the user is not logged in they will be able to see the login page which calls the login form
         if(currState == null || currState.equals("anonymous")){
             req.getRequestDispatcher("/login.jsp").forward(req,resp);
@@ -61,10 +60,10 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
                 // create a bean for the student. Later we will have to eaven save info about ID of the connected user
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, "user",STATE_TYPE.confirmed);
                 // updates the session with the new data in the userBean. I will try to initialize it as well
+                userBean.setName((data.get(1))[1]+ " "+ (data.get(1))[2]);
+                String studentName = userBean.getName();
+                req.getSession().setAttribute("loggedStudName", studentName);
                 req.getSession().setAttribute("userBean", userBean);
-                System.out.println("FROM LOGIN Context" + req.getServletContext().getAttribute("userBean"));
-
-                System.out.println("FROM Login Session " + req.getSession().getAttribute("userBean"));
                 // execute the steps after successful login
                 success = true;
             }
@@ -76,6 +75,9 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
                 // userbean will get unexpected data for privilege type but it has a default on user so the system won't crash
                 user = data.get(1);
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.teacher, user[user.length-1],STATE_TYPE.confirmed);
+                userBean.setName((data.get(1))[1]+ " "+ (data.get(1))[2]);
+                String teacherName = userBean.getName();
+                req.getSession().setAttribute("loggedTeachName", teacherName);
                 req.getSession().setAttribute("userBean", userBean);
                 success = true;
             }
@@ -91,6 +93,7 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
             // the state is no longer anonymous
             getServletContext().setAttribute("userState", "confirmed");
             // the user gets redirected to their version of my page later detirmined in the JSP
+
             req.getRequestDispatcher("/myPage.jsp").forward(req,resp);
         } else {
             // we prepare an error message which currently does not work and it is not optimal
