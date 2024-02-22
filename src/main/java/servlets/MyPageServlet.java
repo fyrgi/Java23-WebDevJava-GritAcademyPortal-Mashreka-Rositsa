@@ -52,7 +52,6 @@ public class MyPageServlet extends HttpServlet {
                     req.getSession().setAttribute("tableHeaders", tableHeaders);
                     req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
                 } else if (comingFromSubMenu != null && comingFromSubMenu.equals("my-classmates")) {
-                    //TODO show all of the students classmates by course
                     String student = "studentClass";
                     // set the context attribute to find next action in myPage
                     req.getSession().setAttribute("caller", student);
@@ -209,11 +208,8 @@ public class MyPageServlet extends HttpServlet {
         //TODO put all this part into an if that checks that the user is coming from a part of the menu that uses this form.
         String sentFromPost = req.getParameter("personCourseSubmit");
         // student and teacher are using the same fields for search but are displaying different results.
-        if (sentFromPost.equals("login")) {
-            String teacher = "answerRequest";
-            req.getSession().setAttribute("caller", teacher);
-            req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
-        } else if (sentFromPost.equals("personCourseSubmit")) {
+
+       if (sentFromPost.equals("personCourseSubmit")) {
             String id = req.getParameter("id");
             String fname = req.getParameter("fname");
             String lname = req.getParameter("lname");
@@ -298,7 +294,8 @@ public class MyPageServlet extends HttpServlet {
             req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
         } else if (sentFromPost.equals("addPersonCourse")) {
             String teacher = "answerRequest";
-            req.getSession().setAttribute("caller", teacher);
+           req.getSession().setAttribute("caller", teacher);
+            req.getSession().setAttribute("personCourseSubmit", sentFromPost);
             String id = req.getParameter("id");
             databaseData = DBConnector.getConnector().selectQuery("getSuggestions", id);
             req.getSession().setAttribute("results", databaseData);
@@ -307,6 +304,8 @@ public class MyPageServlet extends HttpServlet {
                 LinkedList<String> theirHeaders = buildTableHeaders("ID", "Course", "Teacher(s)", "Points");
                 req.getSession().setAttribute("coursesData", signedForCourses);
                 req.getSession().setAttribute("tableHeaders", theirHeaders);
+                String foundPerson = "yes";
+                req.getSession().setAttribute("foundPerson", foundPerson);
             } else {
                 LinkedList<String[]> students = DBConnector.getConnector().selectQuery("showStudents");
                 LinkedList<String> theirHeaders = buildTableHeaders("ID", "First name", "Last name", "City", "Email", "Phone");
