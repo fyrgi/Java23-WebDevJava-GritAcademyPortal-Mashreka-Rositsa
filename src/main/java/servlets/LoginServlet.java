@@ -55,7 +55,6 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("studentLogin", username, password);
             // the first returned row is always the table columns
             if (data.size() > 1) {
-                System.out.println(data.size());
                 req.getSession().setMaxInactiveInterval(300);
                 // create a bean for the student. Later we will have to eaven save info about ID of the connected user
                 UserBean userBean = new UserBean((data.get(1))[0],USER_TYPE.student, "user",STATE_TYPE.confirmed);
@@ -70,7 +69,7 @@ public class LoginServlet extends HttpServlet implements HttpSessionListener  {
         } else if (userType.equals("teacher")) {
             LinkedList<String[]> data = DBConnector.getConnector().selectQuery("teacherLogin", username, password);
             if (data.size() > 1) {
-                req.getSession().setMaxInactiveInterval(10);
+                req.getSession().setMaxInactiveInterval(300);
                 // get the array with data about the teacher and find the LAST COLUMN IN THE DATABASE. If it is changed
                 // userbean will get unexpected data for privilege type but it has a default on user so the system won't crash
                 user = data.get(1);

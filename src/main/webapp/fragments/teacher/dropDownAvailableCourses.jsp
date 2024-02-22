@@ -17,7 +17,7 @@
             </c:otherwise>
         </c:choose>
         </select>
-        <button value="registerForCourse" name="personCourseSubmit" class="btn btn-primary" type=submit>Register</button>
+        <button value="registerForCourse" name="personCourseSubmit" class="btn btn-primary" type=submit>Enroll</button>
     </div>
 </form>
 </div>

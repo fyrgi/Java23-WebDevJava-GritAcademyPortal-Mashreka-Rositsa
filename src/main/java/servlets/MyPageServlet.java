@@ -88,8 +88,16 @@ public class MyPageServlet extends HttpServlet {
                     // set the context attribute to find next action in myPage
                     req.getSession().setAttribute("caller", teacher);
                     // display form and table with teachers that are user or admins
-                    System.out.println("Teacher superadmin make other admins view");
-                    req.getRequestDispatcher("myPage.jsp").forward(req, resp);
+                    if(isConfirmed) {
+                        databaseData = DBConnector.getConnector().selectQuery("getPrivileges");
+                        tableHeaders = buildTableHeaders("ID teacher", "First name", "Last name", "Current privilege");
+                        req.getSession().setAttribute("coursesData", databaseData);
+                        req.getSession().setAttribute("tableHeaders", tableHeaders);
+                        req.getRequestDispatcher("myPage.jsp").forward(req, resp);
+                    } else {
+                        System.out.println("Cannot show privileges.");
+                        req.getRequestDispatcher("/loggedout.jsp").forward(req, resp);
+                    }
                 } else if (comingFromSubMenu != null && comingFromSubMenu.equals("reports")) {
                     //TODO show all of the students classmates by course
                     String teacher = "reports";
@@ -196,18 +204,7 @@ public class MyPageServlet extends HttpServlet {
                         System.out.println("Cannot  show course information form.");
                         req.getRequestDispatcher("/loggedout.jsp").forward(req, resp);
                     }
-                } else if (comingFromSubMenu != null && comingFromSubMenu.equals("teacher-course")) {
-                    /**
-                     Available only for teacher admin
-                     **/
-                    String teacher = "teacherRegisterTeacherForCourse";
-                    req.getSession().setAttribute("caller", teacher);
-                    //TODO implement association for teacher into course.
-                    // One course can or cannot *DECIDE have more than one teachers.
-                    // One course can have NULL teachers
-                    System.out.println("Register student in course. Forms and table");
-                    req.getRequestDispatcher("myPage.jsp").forward(req, resp);
-                } else if (comingFromSubMenu != null && comingFromSubMenu.equals("student-course")) {
+                } else if (comingFromSubMenu != null && comingFromSubMenu.equals("enroll")) {
                     /**
                      Available only for teacher admin
                      **/
@@ -218,8 +215,6 @@ public class MyPageServlet extends HttpServlet {
                         LinkedList<String> theirHeaders = buildTableHeaders("ID", "First name", "Last name", "City", "Email", "Phone");
                         req.getSession().setAttribute("coursesData", students);
                         req.getSession().setAttribute("tableHeaders", theirHeaders);
-
-                        //System.out.println("Register student in course. Forms and table");
                         req.getRequestDispatcher("myPage.jsp").forward(req, resp);
                     } else {
                         System.out.println("Cannot load form for association.");

@@ -122,7 +122,8 @@
 
         <c:choose>
             <c:when test="${caller == 'makeAdmin'}">
-                <p>To be implemented! Could show a form and a table.<br>The form can be to add id and to specify if we want to make admin or user wit ha radio</p>
+                <%@ include file="fragments/teacher/formChangePrivilege.jsp" %>
+                <%@ include file="fragments/tableView.jsp" %>
             </c:when>
 
             <c:when test="${caller == 'reports'}">
