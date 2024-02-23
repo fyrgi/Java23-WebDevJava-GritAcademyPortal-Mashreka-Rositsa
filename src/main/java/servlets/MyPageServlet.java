@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -254,7 +255,7 @@ public class MyPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         LinkedList<String[]> databaseData = new LinkedList<>();
         LinkedList<String> tableHeaders = new LinkedList<>();
-        //TODO put all this part into an if that checks that the user is coming from a part of the menu that uses this form.
+        //TODO THE TEACHER DOES NOT SHOW CORRECTLY. FIX before presentation
         String sentFromPost = req.getParameter("personCourseSubmit");
         // student and teacher are using the same fields for search but are displaying different results.
         Boolean isConfirmed = req.getServletContext().getAttribute("userState").equals("confirmed");
@@ -263,6 +264,7 @@ public class MyPageServlet extends HttpServlet {
             String fname = req.getParameter("fname").trim();
             String lname = req.getParameter("lname").trim();
             String searchFor = req.getParameter("search_for");
+            System.out.println(searchFor);
             Boolean success = false;
             if (searchFor.equals("student")) {
                 // the first ifs up to ELSE will handle the allowed cases and will display result based on which query was caled
@@ -303,7 +305,7 @@ public class MyPageServlet extends HttpServlet {
                     tableHeaders = buildTableHeaders("ID", "Teacher", "Course", "Points");
                     databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherIdOnly", req.getParameter("id"));
                     success = true;
-                } else if (!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())) {
+                } else if (id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())) {
                     tableHeaders = buildTableHeaders("ID", "Teacher", "Course", "Points");
                     databaseData = DBConnector.getConnector().selectQuery("showCoursesForTeacherName", req.getParameter("fname"), req.getParameter("lname"));
                     success = true;
@@ -403,6 +405,8 @@ public class MyPageServlet extends HttpServlet {
             /**
              * Part 2 of Functionality enroll student in course or teacher in class. Actual database add
              **/
+            String teacher = "answerRequest";
+            req.getSession().setAttribute("caller", teacher);
             if(isConfirmed){
                 //registerStudentInCourse
                 String idStudent = (String) req.getSession().getAttribute("foundPerson");
@@ -414,6 +418,48 @@ public class MyPageServlet extends HttpServlet {
                 req.getRequestDispatcher("/loggedout.jsp").forward(req, resp);
             }
 
+        } else if (sentFromPost.equals("changePrivilege")){
+            String idTeacher = req.getParameter("idChosenTeacher");
+            String changePrivilegeTo ="";
+            LinkedList<String[]> priv = DBConnector.getConnector().selectQuery("getPrivilege", idTeacher);
+            if(priv.size()>1) {
+                String curPriv = priv.get(1)[0];
+                if(curPriv.equals("user")){
+                    changePrivilegeTo = "'admin'";
+                } else if (curPriv.equals("admin")){
+                    changePrivilegeTo = "'user'";
+                } else {
+                    changePrivilegeTo = "";
+                }
+            }
+            if(isConfirmed){
+                if(!changePrivilegeTo.isEmpty()){
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:13306/GritAcademy","portalAdmin", "1234");
+                        String sql = "UPDATE teachers SET privilege_type = "+changePrivilegeTo+" WHERE id = " + Integer.parseInt(idTeacher) +";";
+
+                        try {
+                            Statement statement = con.createStatement();
+                            if(statement.executeUpdate(sql) > 0) {
+                                req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
+                            } else {
+
+                                System.out.println("No update was made");
+                                req.getRequestDispatcher("/myPage.jsp").forward(req, resp);
+                            }
+                        } catch(SQLException ex) {
+                            System.out.println(ex);
+                        }
+                        con.close();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+            } else {
+                System.out.println("The teacher's privilege was not changed.");
+                req.getRequestDispatcher("/loggedout.jsp").forward(req, resp);
+            }
         } else if (sentFromPost.equals("addCourse")) {
             /**
              * Functionality available only for Teacher admin. Add new course into the database.

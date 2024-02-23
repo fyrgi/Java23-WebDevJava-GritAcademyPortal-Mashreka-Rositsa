@@ -1,6 +1,7 @@
 <form class="form-container" id="associationForm" action=/mypage method="POST">
     <div class="form-group">
-        <select class="form-select" name=idCourse>
+        <label for="course">Choose a user type:</label>
+        <select id="course" class="form-select" name=idCourse>
         <c:choose>
             <c:when test="${fn:length(availableCourses)<2}">
                 <option selected disabled value="">No data available.</option>
@@ -17,7 +18,7 @@
             </c:otherwise>
         </c:choose>
         </select>
-        <button value="registerForCourse" name="personCourseSubmit" class="btn btn-primary" type=submit>Enroll</button>
     </div>
+        <button value="registerForCourse" name="personCourseSubmit" class="btn btn-primary" type=submit>Enroll</button>
 </form>
 </div>

@@ -167,6 +167,9 @@
                 <%@ include file="fragments/teacher/dropDownAvailableCourses.jsp" %>
             </c:if>
         </c:when>
+        <c:when test="${personCourseSubmit == 'registerForCourse'}">
+            <c:set var="viewTitle" value="Test" scope="request" />
+        </c:when>
 
         <c:otherwise>
             <c:set var="viewTitle" value="Result set" scope="request" />

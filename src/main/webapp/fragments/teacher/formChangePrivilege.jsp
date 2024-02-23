@@ -1,6 +1,6 @@
 <form class="form-container" id="associationForm" action=/mypage method="POST">
     <div class="form-group">
-        <select class="form-select" name=idCourse>
+        <select class="form-select" name="idChosenTeacher">
             <c:choose>
                 <c:when test="${fn:length(coursesData)<=1}">
                     <option selected disabled value="">No data available.</option>
@@ -17,7 +17,7 @@
                 </c:otherwise>
             </c:choose>
         </select>
-        <button value="changePrivilege" name="personCourseSubmit" class="btn btn-primary" type=submit>Change privilege</button>
     </div>
+        <button value="changePrivilege" name="personCourseSubmit" class="btn btn-primary" type=submit>Change privilege</button>
 </form>
 </div>
