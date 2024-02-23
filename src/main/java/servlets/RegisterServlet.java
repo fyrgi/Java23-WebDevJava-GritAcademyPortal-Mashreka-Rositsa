@@ -43,19 +43,18 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("Names, username and password cannot be empty!");
         } else {
             boolean registrationSuccessful = false;
-            if (userType.equals("student")) {
-                registrationSuccessful = DBConnector.getConnector().insertQuery("registerNewStudent", firstName, lastName, town, email, phone, username, password, "S","S","S","S","S","S","S");
-            } else if (userType.equals("teacher")) {
-                registrationSuccessful = DBConnector.getConnector().insertQuery("registerNewTeacher", firstName, lastName, town, email, phone, username, password, "S","S","S","S","S","S","S");
+            if(state.equals("confirmed")){
+                if (userType.equals("student")) {
+                    DBConnector.getConnector().insertQuery("registerNewStudent", firstName, lastName, town, email, phone, username, password, "S","S","S","S","S","S","S");
+                } else if (userType.equals("teacher")) {
+                    DBConnector.getConnector().insertQuery("registerNewTeacher", firstName, lastName, town, email, phone, username, password, "S","S","S","S","S","S","S");
+                } else {
+                    System.out.println("No type chosen");
+                }
+                request.getRequestDispatcher("myPage.jsp").forward(request, response);
             } else {
-                System.out.println("choose type of input");
-            }
-            if (registrationSuccessful) {
-                System.out.println("success");
-            } else {
-                response.sendRedirect("/error.jsp");
+                request.getRequestDispatcher("loggedout.jsp").forward(request, response);
             }
         }
-
     }
 }

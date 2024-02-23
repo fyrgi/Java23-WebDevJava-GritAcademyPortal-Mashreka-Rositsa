@@ -10,7 +10,7 @@
                     <c:forEach items="${coursesData}" var="row" varStatus="loopRow">
                         <c:if test="${loopRow.index != 0}">
                             <c:forEach items="4" var="column" varStatus="loop">
-                                <option value="${row[0]}">id ${row[0]}: ${row[1]} ${row[2]} - now ${row[3]}</option>
+                                <option value="${row[0]}">id ${row[0]}: ${row[1]} ${row[2]} --> ${row[3]}</option>
                             </c:forEach>
                         </c:if>
                     </c:forEach>
