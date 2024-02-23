@@ -98,6 +98,7 @@
 
             <c:when test="${caller == 'teacherRegisterStudentInCourse'}">
                 <%@ include file="fragments/teacher/formAssignPersonToClass.jsp" %>
+                <c:set var="viewTitle" value="All students list" scope="request" />
                 <%@ include file="fragments/tableView.jsp" %>
             </c:when>
 
@@ -122,7 +123,8 @@
 
         <c:choose>
             <c:when test="${caller == 'makeAdmin'}">
-                <p>To be implemented! Could show a form and a table.<br>The form can be to add id and to specify if we want to make admin or user wit ha radio</p>
+                <%@ include file="fragments/teacher/formChangePrivilege.jsp" %>
+                <%@ include file="fragments/tableView.jsp" %>
             </c:when>
 
             <c:when test="${caller == 'reports'}">
@@ -156,15 +158,20 @@
         </c:when>
 
         <c:when test="${personCourseSubmit == 'addPersonCourse'}">
-            <c:set var="viewTitle" value="Add Person Course info" scope="request" />
-            <c:if test="${foundPerson == 'yes'}">
+            <c:if test="${foundPerson != 'no'}">
+                <c:set var="viewTitle" value="Chosen student's current enrolls" scope="request" />
                 <%@ include file="fragments/teacher/formAssignPersonToClass.jsp" %>
                 <%@ include file="fragments/teacher/dropDownAvailableCourses.jsp" %>
             </c:if>
             <c:if test="${foundPerson == 'no'}">
+                <c:set var="viewTitle" value="All students list" scope="request" />
                 <%@ include file="fragments/teacher/formAssignPersonToClass.jsp" %>
                 <%@ include file="fragments/teacher/dropDownAvailableCourses.jsp" %>
             </c:if>
+        </c:when>
+
+        <c:when test="${personCourseSubmit == 'registerForCourse'}">
+            <c:set var="viewTitle" value="Test" scope="request" />
         </c:when>
 
         <c:otherwise>

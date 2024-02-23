@@ -10,5 +10,5 @@
     <input type="text" id="id" class="form-input" name="id">
   </div>
 
-  <button type="submit" value="courseInfoSubmit" name="personCourseSubmit" class="btn btn-primary">Login</button>
+  <button type="submit" value="courseInfoSubmit" name="personCourseSubmit" class="btn btn-primary">Check</button>
 </form>
